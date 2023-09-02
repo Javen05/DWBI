@@ -1,6 +1,9 @@
 # DWBI
 Data Warehouse and Business Intelligence
 
+## Takeaway from Project:
+Through this project, I learnt to design a star schema that is meant for storing data to be analyzed. I also learnt to use Alteryx for data cleaning and transformation, along with using SQL scripts to create tables and import data from csv files. Finally, I learnt how to generate insights and recommendations from interpreting data and visualizations I have created, and present them to stakeholders of the business.
+
 ## About Project:
 ### Group
 1. Design a data warehouse using star schema format for the company.
