@@ -1,0 +1,1591 @@
+<?xml version="1.0"?>
+<AlteryxDocument yxmdVer="2022.3">
+  <Nodes>
+    <Node ToolID="90">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Sort.Sort">
+        <Position x="1206" y="282" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <SortInfo locale="1033">
+            <Field field="StockCode" order="Ascending" />
+          </SortInfo>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>StockCode - Ascending</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSort" />
+    </Node>
+    <Node ToolID="110">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+        <Position x="582" y="54" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <FormulaFields>
+            <FormulaField expression="IF IsEmpty([job_title]) THEN &quot;NA&quot; ELSE [job_title] ENDIF" field="job_title" size="255" type="V_String" />
+            <FormulaField expression="IF [job_title] = &quot;NA&quot; AND [job_industry_category] = &quot;n/a&quot; THEN &quot;Unemployed&quot; ELSE [job_title] ENDIF" field="job_title" size="255" type="V_String" />
+          </FormulaFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>job_title = IF IsEmpty([job_title]) THEN "NA" ELSE [job_title] ENDIF
+job_title =...</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+    </Node>
+    <Node ToolID="136">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileOutput.DbFileOutput">
+        <Position x="870" y="510" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <File MaxRecords="" FileFormat="0">C:\ProgramData\MySQL\MySQL Server 8.0\Uploads\country.csv</File>
+          <Passwords />
+          <Disable>False</Disable>
+          <FormatSpecificOptions>
+            <LineEndStyle>CRLF</LineEndStyle>
+            <Delimeter>,</Delimeter>
+            <ForceQuotes>False</ForceQuotes>
+            <HeaderRow>True</HeaderRow>
+            <CodePage>28591</CodePage>
+            <WriteBOM>True</WriteBOM>
+          </FormatSpecificOptions>
+          <MultiFile value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>country.csv</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileOutput" />
+    </Node>
+    <Node ToolID="137">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+        <Position x="702" y="522" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <OrderChanged value="True" />
+          <CommaDecimal value="False" />
+          <SelectFields>
+            <SelectField field="TransactionID" selected="False" />
+            <SelectField field="InvoiceNo" selected="False" />
+            <SelectField field="StockCode" selected="False" />
+            <SelectField field="Description" selected="False" />
+            <SelectField field="Quantity" selected="False" />
+            <SelectField field="UnitPrice" selected="False" />
+            <SelectField field="CustomerID" selected="False" />
+            <SelectField field="countryId" selected="True" />
+            <SelectField field="Country" selected="True" />
+            <SelectField field="InvoiceDate" selected="False" />
+            <SelectField field="*Unknown" selected="False" />
+          </SelectFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+    </Node>
+    <Node ToolID="141">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Unique.Unique">
+        <Position x="762" y="522" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <UniqueFields>
+            <Field field="Country" />
+          </UniqueFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxUnique" />
+    </Node>
+    <Node ToolID="144">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+        <Position x="894" y="282" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <FormulaFields>
+            <FormulaField expression="[UnitPrice]*[Quantity]" field="amount" size="8" type="Double" />
+          </FormulaFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText><![CDATA[amount = [UnitPrice]*[Quantity]
+]]></DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+    </Node>
+    <Node ToolID="145">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+        <Position x="1062" y="282" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <FormulaFields>
+            <FormulaField expression="DateTimeYear(DateTimeParse([InvoiceDate], &quot;%Y-%m-%d %H:%M:%S&quot;))" field="year" size="4" type="Int32" />
+            <FormulaField expression="DateTimeFormat(DateTimeParse([InvoiceDate], &quot;%Y-%m-%d %H:%M:%S&quot;),&quot;%b&quot;)" field="month" size="3" type="V_WString" />
+            <FormulaField expression="DateTimeFormat(DateTimeParse([InvoiceDate], &quot;%Y-%m-%d %H:%M:%S&quot;),&quot;%A&quot;)" field="day" size="10" type="V_WString" />
+          </FormulaFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>year = DateTimeYear(DateTimeParse([InvoiceDate], "%Y-%m-%d %H:%M:%S"))
+month = D...</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+    </Node>
+    <Node ToolID="146">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.RecordID.RecordID">
+        <Position x="522" y="282" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <FieldName>TransactionID</FieldName>
+          <StartValue>1</StartValue>
+          <FieldType>Int64</FieldType>
+          <FieldSize>6</FieldSize>
+          <Position>0</Position>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxRecordID" />
+    </Node>
+    <Node ToolID="164">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.MultiRowFormula.MultiRowFormula">
+        <Position x="1278" y="282" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <UpdateField value="False" />
+          <UpdateField_Name>TransactionID</UpdateField_Name>
+          <CreateField_Name>SupplierID</CreateField_Name>
+          <CreateField_Type>Int64</CreateField_Type>
+          <CreateField_Size>8</CreateField_Size>
+          <OtherRows>Empty</OtherRows>
+          <NumRows value="1" />
+          <Expression>IF (SOUNDEX_Digits([StockCode]) = SOUNDEX_Digits([Row-1:StockCode])) OR (LEFT([Row-1:StockCode], Length([Row-1:StockCode])) = LEFT([StockCode], Length([StockCode]))) THEN [Row-1:SupplierID] ELSE [Row-1:SupplierID] + 1 ENDIF</Expression>
+          <GroupByFields />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>IF (SOUNDEX_Digits([StockCode]) = SOUNDEX_Digits([Row-1:Stock...</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxMultiRowFormula" />
+    </Node>
+    <Node ToolID="165">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Sort.Sort">
+        <Position x="1410" y="282" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <SortInfo locale="1033">
+            <Field field="Description" order="Ascending" />
+            <Field field="InvoiceDate" order="Descending" />
+            <Field field="UnitPrice" order="Descending" />
+          </SortInfo>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Description - Ascending
+InvoiceDate - Descending
+UnitPrice - Descending</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSort" />
+    </Node>
+    <Node ToolID="170">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.MultiRowFormula.MultiRowFormula">
+        <Position x="1494" y="282" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <UpdateField value="False" />
+          <UpdateField_Name />
+          <CreateField_Name>isCurrent_product</CreateField_Name>
+          <CreateField_Type>Byte</CreateField_Type>
+          <CreateField_Size>1</CreateField_Size>
+          <OtherRows>Empty</OtherRows>
+          <NumRows value="1" />
+          <Expression>IF [StockCode] != [Row-1:StockCode] AND [UnitPrice] &gt; 0 THEN 1 ELSE 0 ENDIF</Expression>
+          <GroupByFields />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>IF [StockCode] != [Row-1:StockCode] AND [UnitPrice] &gt; 0 THEN ...</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxMultiRowFormula" />
+    </Node>
+    <Node ToolID="177">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileOutput.DbFileOutput">
+        <Position x="1110" y="510" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <File MaxRecords="" FileFormat="0">C:\ProgramData\MySQL\MySQL Server 8.0\Uploads\invoice.csv</File>
+          <Passwords />
+          <Disable>False</Disable>
+          <FormatSpecificOptions>
+            <LineEndStyle>CRLF</LineEndStyle>
+            <Delimeter>,</Delimeter>
+            <ForceQuotes>False</ForceQuotes>
+            <HeaderRow>True</HeaderRow>
+            <CodePage>28591</CodePage>
+            <WriteBOM>True</WriteBOM>
+          </FormatSpecificOptions>
+          <MultiFile value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>invoice.csv</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileOutput" />
+    </Node>
+    <Node ToolID="179">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileOutput.DbFileOutput">
+        <Position x="1362" y="510" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <File MaxRecords="" FileFormat="0">C:\ProgramData\MySQL\MySQL Server 8.0\Uploads\time.csv</File>
+          <Passwords />
+          <Disable>False</Disable>
+          <FormatSpecificOptions>
+            <LineEndStyle>CRLF</LineEndStyle>
+            <Delimeter>,</Delimeter>
+            <ForceQuotes>False</ForceQuotes>
+            <HeaderRow>True</HeaderRow>
+            <CodePage>28591</CodePage>
+            <WriteBOM>True</WriteBOM>
+          </FormatSpecificOptions>
+          <MultiFile value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>time.csv</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileOutput" />
+    </Node>
+    <Node ToolID="182">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileOutput.DbFileOutput">
+        <Position x="2202" y="414" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <File MaxRecords="" FileFormat="0">C:\ProgramData\MySQL\MySQL Server 8.0\Uploads\product.csv</File>
+          <Passwords />
+          <Disable>False</Disable>
+          <FormatSpecificOptions>
+            <LineEndStyle>CRLF</LineEndStyle>
+            <Delimeter>,</Delimeter>
+            <ForceQuotes>False</ForceQuotes>
+            <HeaderRow>True</HeaderRow>
+            <CodePage>28591</CodePage>
+            <WriteBOM>True</WriteBOM>
+          </FormatSpecificOptions>
+          <MultiFile value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>product.csv</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileOutput" />
+    </Node>
+    <Node ToolID="201">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Sort.Sort">
+        <Position x="1626" y="282" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <SortInfo locale="1033">
+            <Field field="Description" order="Ascending" />
+            <Field field="UnitPrice" order="Descending" />
+            <Field field="InvoiceDate" order="Ascending" />
+          </SortInfo>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Description - Ascending
+UnitPrice - Descending
+InvoiceDate - Ascending</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSort" />
+    </Node>
+    <Node ToolID="202">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.MultiRowFormula.MultiRowFormula">
+        <Position x="1710" y="282" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <UpdateField value="False" />
+          <UpdateField_Name>TransactionID</UpdateField_Name>
+          <CreateField_Name>effectiveDate</CreateField_Name>
+          <CreateField_Type>Date</CreateField_Type>
+          <CreateField_Size>10</CreateField_Size>
+          <OtherRows>Empty</OtherRows>
+          <NumRows value="1" />
+          <Expression>IF [UnitPrice] &lt;= 0 THEN [InvoiceDate] ELSEIF [Row-1:UnitPrice] &gt;= 0 AND [StockCode] = [Row-1:StockCode] AND [UnitPrice] = [Row-1:UnitPrice] THEN [Row-1:effectiveDate] ELSE [InvoiceDate] ENDIF</Expression>
+          <GroupByFields />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>IF [UnitPrice] &lt;= 0 THEN [InvoiceDate] ELSEIF [Row-1:UnitPric...</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxMultiRowFormula" />
+    </Node>
+    <Node ToolID="205">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileOutput.DbFileOutput">
+        <Position x="1662" y="54" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <File MaxRecords="" FileFormat="0">C:\ProgramData\MySQL\MySQL Server 8.0\Uploads\customer.csv</File>
+          <Passwords />
+          <Disable>False</Disable>
+          <FormatSpecificOptions>
+            <LineEndStyle>CRLF</LineEndStyle>
+            <Delimeter>,</Delimeter>
+            <ForceQuotes>False</ForceQuotes>
+            <HeaderRow>True</HeaderRow>
+            <CodePage>28591</CodePage>
+            <WriteBOM>True</WriteBOM>
+          </FormatSpecificOptions>
+          <MultiFile value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>customer.csv</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileOutput" />
+    </Node>
+    <Node ToolID="215">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileOutput.DbFileOutput">
+        <Position x="2346" y="282" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <File MaxRecords="" FileFormat="0">C:\ProgramData\MySQL\MySQL Server 8.0\Uploads\fact_transaction.csv</File>
+          <Passwords />
+          <Disable>False</Disable>
+          <FormatSpecificOptions>
+            <LineEndStyle>CRLF</LineEndStyle>
+            <Delimeter>,</Delimeter>
+            <ForceQuotes>False</ForceQuotes>
+            <HeaderRow>True</HeaderRow>
+            <CodePage>28591</CodePage>
+            <WriteBOM>True</WriteBOM>
+          </FormatSpecificOptions>
+          <MultiFile value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>fact_transaction.csv</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileOutput" />
+    </Node>
+    <Node ToolID="284">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileInput.DbFileInput">
+        <Position x="54" y="282" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Passwords />
+          <File RecordLimit="" SearchSubDirs="False" FileFormat="0" OutputFileName="">C:\Users\javen\OneDrive - Temasek Polytechnic\Desktop\A-SCHOOL-2023\DWBI\die\transactiondata.csv</File>
+          <FormatSpecificOptions>
+            <HeaderRow>True</HeaderRow>
+            <IgnoreErrors>False</IgnoreErrors>
+            <AllowShareWrite>False</AllowShareWrite>
+            <ImportLine>1</ImportLine>
+            <FieldLen>254</FieldLen>
+            <SingleThreadRead>False</SingleThreadRead>
+            <IgnoreQuotes>DoubleQuotes</IgnoreQuotes>
+            <Delimeter>,</Delimeter>
+            <QuoteRecordBreak>False</QuoteRecordBreak>
+            <CodePage>28591</CodePage>
+          </FormatSpecificOptions>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>transactiondata.csv</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="InvoiceNo" size="254" source="File: C:\Users\javen\OneDrive - Temasek Polytechnic\Desktop\A-SCHOOL-2023\DWBI\die\transactiondata.csv" type="V_String" />
+            <Field name="StockCode" size="254" source="File: C:\Users\javen\OneDrive - Temasek Polytechnic\Desktop\A-SCHOOL-2023\DWBI\die\transactiondata.csv" type="V_String" />
+            <Field name="Description" size="254" source="File: C:\Users\javen\OneDrive - Temasek Polytechnic\Desktop\A-SCHOOL-2023\DWBI\die\transactiondata.csv" type="V_String" />
+            <Field name="Quantity" size="254" source="File: C:\Users\javen\OneDrive - Temasek Polytechnic\Desktop\A-SCHOOL-2023\DWBI\die\transactiondata.csv" type="V_String" />
+            <Field name="InvoiceDate" size="254" source="File: C:\Users\javen\OneDrive - Temasek Polytechnic\Desktop\A-SCHOOL-2023\DWBI\die\transactiondata.csv" type="V_String" />
+            <Field name="UnitPrice" size="254" source="File: C:\Users\javen\OneDrive - Temasek Polytechnic\Desktop\A-SCHOOL-2023\DWBI\die\transactiondata.csv" type="V_String" />
+            <Field name="CustomerID" size="254" source="File: C:\Users\javen\OneDrive - Temasek Polytechnic\Desktop\A-SCHOOL-2023\DWBI\die\transactiondata.csv" type="V_String" />
+            <Field name="Country" size="254" source="File: C:\Users\javen\OneDrive - Temasek Polytechnic\Desktop\A-SCHOOL-2023\DWBI\die\transactiondata.csv" type="V_String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileInput" />
+    </Node>
+    <Node ToolID="285">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileInput.DbFileInput">
+        <Position x="54" y="78" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Passwords />
+          <File OutputFileName="" RecordLimit="" SearchSubDirs="False" FileFormat="25">C:\Users\javen\OneDrive - Temasek Polytechnic\Desktop\A-SCHOOL-2023\DWBI\die\Customers.xlsx</File>
+          <FormatSpecificOptions>
+            <FirstRowData>False</FirstRowData>
+            <ImportLine>1</ImportLine>
+          </FormatSpecificOptions>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Customers.xlsx</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="customer_id" source="File: C:\Users\javen\OneDrive - Temasek Polytechnic\Desktop\A-SCHOOL-2023\DWBI\die\Customers.xlsx" type="Double" />
+            <Field name="name" size="255" source="File: C:\Users\javen\OneDrive - Temasek Polytechnic\Desktop\A-SCHOOL-2023\DWBI\die\Customers.xlsx" type="V_String" />
+            <Field name="gender" size="255" source="File: C:\Users\javen\OneDrive - Temasek Polytechnic\Desktop\A-SCHOOL-2023\DWBI\die\Customers.xlsx" type="V_String" />
+            <Field name="past_3_years_bike_related_purchases" size="255" source="File: C:\Users\javen\OneDrive - Temasek Polytechnic\Desktop\A-SCHOOL-2023\DWBI\die\Customers.xlsx" type="V_String" />
+            <Field name="DOB" size="255" source="File: C:\Users\javen\OneDrive - Temasek Polytechnic\Desktop\A-SCHOOL-2023\DWBI\die\Customers.xlsx" type="V_String" />
+            <Field name="age" source="File: C:\Users\javen\OneDrive - Temasek Polytechnic\Desktop\A-SCHOOL-2023\DWBI\die\Customers.xlsx" type="Double" />
+            <Field name="job_title" size="255" source="File: C:\Users\javen\OneDrive - Temasek Polytechnic\Desktop\A-SCHOOL-2023\DWBI\die\Customers.xlsx" type="V_String" />
+            <Field name="job_industry_category" size="255" source="File: C:\Users\javen\OneDrive - Temasek Polytechnic\Desktop\A-SCHOOL-2023\DWBI\die\Customers.xlsx" type="V_String" />
+            <Field name="wealth_segment" size="255" source="File: C:\Users\javen\OneDrive - Temasek Polytechnic\Desktop\A-SCHOOL-2023\DWBI\die\Customers.xlsx" type="V_String" />
+            <Field name="deceased_indicator" size="255" source="File: C:\Users\javen\OneDrive - Temasek Polytechnic\Desktop\A-SCHOOL-2023\DWBI\die\Customers.xlsx" type="V_String" />
+            <Field name="owns_car" size="255" source="File: C:\Users\javen\OneDrive - Temasek Polytechnic\Desktop\A-SCHOOL-2023\DWBI\die\Customers.xlsx" type="V_String" />
+            <Field name="tenure" source="File: C:\Users\javen\OneDrive - Temasek Polytechnic\Desktop\A-SCHOOL-2023\DWBI\die\Customers.xlsx" type="Double" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileInput" />
+    </Node>
+    <Node ToolID="287">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Unique.Unique">
+        <Position x="450" y="294" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <UniqueFields>
+            <Field field="InvoiceNo" />
+            <Field field="StockCode" />
+            <Field field="Description" />
+            <Field field="Quantity" />
+            <Field field="UnitPrice" />
+            <Field field="CustomerID" />
+            <Field field="Country" />
+            <Field field="InvoiceDate" />
+          </UniqueFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxUnique" />
+    </Node>
+    <Node ToolID="288">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+        <Position x="366" y="54" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <FormulaFields>
+            <FormulaField expression="If IsNull([age]) THEN DateTimeDiff( DateTimeParse(ToString(DateTimeYear(DateTimeToday())) + '-05-31', '%Y-%m-%d'),[DOB],'years') ELSE [age] ENDIF" field="age" size="8" type="Double" />
+          </FormulaFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>age = If IsNull([age]) THEN DateTimeDiff( DateTimeParse(ToString(DateTimeYear(Da...</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+    </Node>
+    <Node ToolID="289">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
+        <Position x="258" y="66" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Mode>Simple</Mode>
+          <Simple>
+            <Operator>!=</Operator>
+            <Field>gender</Field>
+            <Operands>
+              <IgnoreTimeInDateTime>True</IgnoreTimeInDateTime>
+              <DateType>fixed</DateType>
+              <PeriodDate>2023-06-27 17:06:13</PeriodDate>
+              <PeriodType>
+              </PeriodType>
+              <PeriodCount>0</PeriodCount>
+              <Operand>U</Operand>
+              <StartDate>2023-06-27 17:06:13</StartDate>
+              <EndDate>2023-06-27 17:06:13</EndDate>
+            </Operands>
+          </Simple>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>[gender] != "U"</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFilter" />
+    </Node>
+    <Node ToolID="290">
+      <GuiSettings>
+        <Position x="390" y="294" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Value name="Check Box (135)">False</Value>
+          <Value name="Check Box (136)">False</Value>
+          <Value name="List Box (11)">"InvoiceNo","StockCode","Description","Quantity","UnitPrice","CustomerID","Country","InvoiceDate"</Value>
+          <Value name="Check Box (84)">False</Value>
+          <Value name="Check Box (117)">False</Value>
+          <Value name="Check Box (15)">True</Value>
+          <Value name="Check Box (109)">True</Value>
+          <Value name="Check Box (122)">False</Value>
+          <Value name="Check Box (53)">False</Value>
+          <Value name="Check Box (58)">False</Value>
+          <Value name="Check Box (70)">False</Value>
+          <Value name="Check Box (77)">False</Value>
+          <Value name="Drop Down (81)">upper</Value>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings Macro="Cleanse.yxmc" />
+    </Node>
+    <Node ToolID="292">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+        <Position x="474" y="54" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <FormulaFields>
+            <FormulaField expression="IF IsNull([job_title]) THEN &quot;NA&quot; ELSE [job_title] ENDIF" field="job_title" size="255" type="V_String" />
+            <FormulaField expression="IF IsNull([job_industry_category]) THEN &quot;n/a&quot; ELSE [job_industry_category] ENDIF" field="job_industry_category" size="255" type="V_String" />
+          </FormulaFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>job_title = IF IsNull([job_title]) THEN "NA" ELSE [job_title] ENDIF
+job_industry...</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+    </Node>
+    <Node ToolID="293">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
+        <Position x="318" y="282" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Mode>Simple</Mode>
+          <Simple>
+            <Operator>=</Operator>
+            <Field>UnitPrice</Field>
+            <Operands>
+              <IgnoreTimeInDateTime>True</IgnoreTimeInDateTime>
+              <DateType>fixed</DateType>
+              <PeriodDate>2023-07-25 11:48:06</PeriodDate>
+              <PeriodType>
+              </PeriodType>
+              <PeriodCount>0</PeriodCount>
+              <Operand>0</Operand>
+              <StartDate>2023-07-25 11:48:06</StartDate>
+              <EndDate>2023-07-25 11:48:06</EndDate>
+            </Operands>
+          </Simple>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>[UnitPrice] = 0</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFilter" />
+    </Node>
+    <Node ToolID="294">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+        <Position x="246" y="282" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <OrderChanged value="False" />
+          <CommaDecimal value="False" />
+          <SelectFields>
+            <SelectField field="InvoiceNo" selected="True" />
+            <SelectField field="StockCode" selected="True" />
+            <SelectField field="Description" selected="True" />
+            <SelectField field="Quantity" selected="True" type="Int64" size="8" />
+            <SelectField field="UnitPrice" selected="True" type="Double" size="8" />
+            <SelectField field="CustomerID" selected="True" type="Double" size="8" />
+            <SelectField field="Country" selected="True" />
+            <SelectField field="InvoiceDate2" selected="True" rename="InvoiceDate" />
+            <SelectField field="*Unknown" selected="False" />
+          </SelectFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+    </Node>
+    <Node ToolID="312">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DateTime.DateTime">
+        <Position x="162" y="282" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <IsFrom value="False" />
+          <InputFieldName>InvoiceDate</InputFieldName>
+          <Language>English</Language>
+          <Format>MM/dd/yyyy</Format>
+          <OutputFieldName>InvoiceDate</OutputFieldName>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Convert InvoiceDate From:
+MM/dd/yyyy</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDateTime" />
+    </Node>
+    <Node ToolID="313">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Sort.Sort">
+        <Position x="690" y="54" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <SortInfo locale="1033">
+            <Field field="customer_id" order="Ascending" />
+          </SortInfo>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>customer_id - Ascending</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSort" />
+    </Node>
+    <Node ToolID="314">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.MultiRowFormula.MultiRowFormula">
+        <Position x="774" y="54" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <UpdateField value="False" />
+          <UpdateField_Name>customer_id</UpdateField_Name>
+          <CreateField_Name>customerSurrogate</CreateField_Name>
+          <CreateField_Type>Int64</CreateField_Type>
+          <CreateField_Size>8</CreateField_Size>
+          <OtherRows>Empty</OtherRows>
+          <NumRows value="1" />
+          <Expression>IF [customer_id] = [Row-1:customer_id] AND [Age] = [Row-1:age] AND [job_title] = [Row-1:job_title] AND [job_industry_category] = [Row-1:job_industry_category] AND [wealth_segment] = [Row-1:wealth_segment] THEN [Row-1:customerSurrogate] ELSE [Row-1:customerSurrogate]+1 ENDIF</Expression>
+          <GroupByFields />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>IF [customer_id] = [Row-1:customer_id] AND [Age] = [Row-1:age...</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxMultiRowFormula" />
+    </Node>
+    <Node ToolID="315">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.MultiRowFormula.MultiRowFormula">
+        <Position x="1050" y="66" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <UpdateField value="False" />
+          <UpdateField_Name>customer_id</UpdateField_Name>
+          <CreateField_Name>startDate</CreateField_Name>
+          <CreateField_Type>Date</CreateField_Type>
+          <CreateField_Size>10</CreateField_Size>
+          <OtherRows>Empty</OtherRows>
+          <NumRows value="1" />
+          <Expression>IF [customerSurrogate] = [Row-1:customerSurrogate] THEN [Row-1:startDate] ELSE [InvoiceDate] ENDIF</Expression>
+          <GroupByFields />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>IF [customerSurrogate] = [Row-1:customerSurrogate] THEN [Row-...</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxMultiRowFormula" />
+    </Node>
+    <Node ToolID="316">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Sort.Sort">
+        <Position x="942" y="66" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <SortInfo locale="1033">
+            <Field field="customerSurrogate" order="Ascending" />
+            <Field field="InvoiceDate" order="Ascending" />
+          </SortInfo>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>customerSurrogate - Ascending
+InvoiceDate - Ascending</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSort" />
+    </Node>
+    <Node ToolID="317">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Join.Join">
+        <Position x="858" y="66" />
+      </GuiSettings>
+      <Properties>
+        <Configuration joinByRecordPos="False">
+          <JoinInfo connection="Left">
+            <Field field="customer_id" />
+          </JoinInfo>
+          <JoinInfo connection="Right">
+            <Field field="CustomerID" />
+          </JoinInfo>
+          <SelectConfiguration>
+            <Configuration outputConnection="Join">
+              <OrderChanged value="False" />
+              <CommaDecimal value="False" />
+              <SelectFields>
+                <SelectField field="Left_customer_id" selected="True" input="Left_" />
+                <SelectField field="Left_name" selected="True" input="Left_" />
+                <SelectField field="Left_gender" selected="True" input="Left_" />
+                <SelectField field="Left_past_3_years_bike_related_purchases" selected="True" input="Left_" />
+                <SelectField field="Left_DOB" selected="True" input="Left_" />
+                <SelectField field="Left_age" selected="True" input="Left_" />
+                <SelectField field="Left_job_title" selected="True" input="Left_" />
+                <SelectField field="Left_job_industry_category" selected="True" input="Left_" />
+                <SelectField field="Left_wealth_segment" selected="True" input="Left_" />
+                <SelectField field="Left_owns_car" selected="True" input="Left_" />
+                <SelectField field="Left_tenure" selected="True" input="Left_" />
+                <SelectField field="Left_customerSurrogate" selected="True" input="Left_" />
+                <SelectField field="Right_TransactionID" selected="True" input="Right_" />
+                <SelectField field="Right_InvoiceDate" selected="True" input="Right_" />
+                <SelectField field="*Unknown" selected="False" />
+              </SelectFields>
+            </Configuration>
+          </SelectConfiguration>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxJoin" />
+    </Node>
+    <Node ToolID="318">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Sort.Sort">
+        <Position x="1158" y="66" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <SortInfo locale="1033">
+            <Field field="customerSurrogate" order="Ascending" />
+            <Field field="InvoiceDate" order="Descending" />
+          </SortInfo>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>customerSurrogate - Ascending
+InvoiceDate - Descending</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSort" />
+    </Node>
+    <Node ToolID="319">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.MultiRowFormula.MultiRowFormula">
+        <Position x="1266" y="66" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <UpdateField value="False" />
+          <UpdateField_Name>customer_id</UpdateField_Name>
+          <CreateField_Name>endDate</CreateField_Name>
+          <CreateField_Type>Date</CreateField_Type>
+          <CreateField_Size>10</CreateField_Size>
+          <OtherRows>Empty</OtherRows>
+          <NumRows value="1" />
+          <Expression>IF [customerSurrogate] = [Row-1:customerSurrogate] THEN [Row-1:endDate] ELSE [InvoiceDate] ENDIF</Expression>
+          <GroupByFields />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>IF [customerSurrogate] = [Row-1:customerSurrogate] THEN [Row-...</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxMultiRowFormula" />
+    </Node>
+    <Node ToolID="320">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.MultiRowFormula.MultiRowFormula">
+        <Position x="1374" y="66" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <UpdateField value="False" />
+          <UpdateField_Name>customer_id</UpdateField_Name>
+          <CreateField_Name>isCurrent</CreateField_Name>
+          <CreateField_Type>Int16</CreateField_Type>
+          <CreateField_Size>2</CreateField_Size>
+          <OtherRows>Empty</OtherRows>
+          <NumRows value="1" />
+          <Expression>IF [customerSurrogate] = [Row-1:customerSurrogate] THEN 0 ELSE 1 ENDIF</Expression>
+          <GroupByFields />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>IF [customerSurrogate] = [Row-1:customerSurrogate] THEN 0 ELS...</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxMultiRowFormula" />
+    </Node>
+    <Node ToolID="321">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+        <Position x="1590" y="54" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <OrderChanged value="True" />
+          <CommaDecimal value="False" />
+          <SelectFields>
+            <SelectField field="customerSurrogate" selected="True" />
+            <SelectField field="name" selected="True" />
+            <SelectField field="age" selected="True" />
+            <SelectField field="gender" selected="True" />
+            <SelectField field="past_3_years_bike_related_purchases" selected="True" />
+            <SelectField field="DOB" selected="True" />
+            <SelectField field="job_title" selected="True" />
+            <SelectField field="job_industry_category" selected="True" />
+            <SelectField field="wealth_segment" selected="True" />
+            <SelectField field="owns_car" selected="True" />
+            <SelectField field="tenure" selected="True" />
+            <SelectField field="customer_id" selected="True" />
+            <SelectField field="startDate" selected="True" />
+            <SelectField field="endDate" selected="True" />
+            <SelectField field="isCurrent" selected="True" />
+            <SelectField field="InvoiceDate" selected="False" />
+            <SelectField field="TransactionID" selected="False" />
+            <SelectField field="*Unknown" selected="False" />
+          </SelectFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+    </Node>
+    <Node ToolID="322">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Sort.Sort">
+        <Position x="678" y="282" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <SortInfo locale="1033">
+            <Field field="Country" order="Ascending" />
+          </SortInfo>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Country - Ascending</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSort" />
+    </Node>
+    <Node ToolID="323">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.MultiRowFormula.MultiRowFormula">
+        <Position x="750" y="282" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <UpdateField value="False" />
+          <UpdateField_Name>TransactionID</UpdateField_Name>
+          <CreateField_Name>countryId</CreateField_Name>
+          <CreateField_Type>Int16</CreateField_Type>
+          <CreateField_Size>2</CreateField_Size>
+          <OtherRows>Empty</OtherRows>
+          <NumRows value="1" />
+          <Expression>IF [Country] = [Row-1:Country] THEN [Row-1:countryId] ELSE [Row-1:countryId]+1 ENDIF</Expression>
+          <GroupByFields />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>IF [Country] = [Row-1:Country] THEN [Row-1:countryId] ELSE [R...</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxMultiRowFormula" />
+    </Node>
+    <Node ToolID="325">
+      <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
+        <Position x="1014" y="510" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <SummarizeFields>
+            <SummarizeField field="InvoiceNo" action="GroupBy" rename="InvoiceNo" />
+            <SummarizeField field="amount" action="Sum" rename="Sum_amount" />
+          </SummarizeFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxSpatialPluginsEngine.dll" EngineDllEntryPoint="AlteryxSummarize" />
+    </Node>
+    <Node ToolID="326">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.RecordID.RecordID">
+        <Position x="990" y="282" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <FieldName>timeSurrogate</FieldName>
+          <StartValue>1</StartValue>
+          <FieldType>Int32</FieldType>
+          <FieldSize>6</FieldSize>
+          <Position>0</Position>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxRecordID" />
+    </Node>
+    <Node ToolID="327">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+        <Position x="1278" y="510" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <OrderChanged value="True" />
+          <CommaDecimal value="False" />
+          <SelectFields>
+            <SelectField field="timeSurrogate" selected="True" />
+            <SelectField field="TransactionID" selected="False" />
+            <SelectField field="InvoiceNo" selected="False" />
+            <SelectField field="StockCode" selected="False" />
+            <SelectField field="Description" selected="False" />
+            <SelectField field="Quantity" selected="False" />
+            <SelectField field="UnitPrice" selected="False" />
+            <SelectField field="CustomerID" selected="False" />
+            <SelectField field="Country" selected="False" />
+            <SelectField field="InvoiceDate" selected="False" />
+            <SelectField field="countryId" selected="False" />
+            <SelectField field="amount" selected="False" />
+            <SelectField field="year" selected="True" />
+            <SelectField field="month" selected="True" />
+            <SelectField field="day" selected="True" />
+            <SelectField field="*Unknown" selected="False" />
+          </SelectFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+    </Node>
+    <Node ToolID="328">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+        <Position x="2082" y="426" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <OrderChanged value="True" />
+          <CommaDecimal value="False" />
+          <SelectFields>
+            <SelectField field="timeSurrogate" selected="False" />
+            <SelectField field="productId" selected="True" />
+            <SelectField field="TransactionID" selected="False" />
+            <SelectField field="InvoiceNo" selected="False" />
+            <SelectField field="StockCode" selected="True" />
+            <SelectField field="Description" selected="True" />
+            <SelectField field="Quantity" selected="False" />
+            <SelectField field="CustomerID" selected="False" />
+            <SelectField field="Country" selected="False" />
+            <SelectField field="InvoiceDate" selected="False" />
+            <SelectField field="countryId" selected="False" />
+            <SelectField field="amount" selected="False" />
+            <SelectField field="SupplierID" selected="True" />
+            <SelectField field="UnitPrice" selected="True" />
+            <SelectField field="year" selected="False" />
+            <SelectField field="month" selected="False" />
+            <SelectField field="day" selected="False" />
+            <SelectField field="effectiveDate" selected="True" />
+            <SelectField field="isCurrent_product" selected="True" />
+            <SelectField field="*Unknown" selected="False" />
+          </SelectFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+    </Node>
+    <Node ToolID="329">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Sort.Sort">
+        <Position x="1842" y="282" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <SortInfo locale="1033">
+            <Field field="StockCode" order="Ascending" />
+            <Field field="effectiveDate" order="Ascending" />
+          </SortInfo>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>StockCode - Ascending
+effectiveDate - Ascending</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSort" />
+    </Node>
+    <Node ToolID="330">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.MultiRowFormula.MultiRowFormula">
+        <Position x="1938" y="282" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <UpdateField value="False" />
+          <UpdateField_Name>timeSurrogate</UpdateField_Name>
+          <CreateField_Name>productId</CreateField_Name>
+          <CreateField_Type>Int64</CreateField_Type>
+          <CreateField_Size>8</CreateField_Size>
+          <OtherRows>Empty</OtherRows>
+          <NumRows value="1" />
+          <Expression>IF [StockCode] = [Row-1:StockCode] AND [effectiveDate] = [Row-1:effectiveDate] THEN [Row-1:productId] ELSE [Row-1:productId]+1 ENDIF</Expression>
+          <GroupByFields />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>IF [StockCode] = [Row-1:StockCode] AND [effectiveDate] = [Row...</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxMultiRowFormula" />
+    </Node>
+    <Node ToolID="331">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+        <Position x="2274" y="282" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <OrderChanged value="True" />
+          <CommaDecimal value="False" />
+          <SelectFields>
+            <SelectField field="TransactionID" selected="True" />
+            <SelectField field="StockCode" selected="False" />
+            <SelectField field="Description" selected="False" />
+            <SelectField field="Quantity" selected="True" />
+            <SelectField field="customerSurrogate" selected="True" />
+            <SelectField field="InvoiceNo" selected="True" />
+            <SelectField field="timeSurrogate" selected="True" />
+            <SelectField field="UnitPrice" selected="False" />
+            <SelectField field="CustomerID" selected="False" />
+            <SelectField field="Country" selected="False" />
+            <SelectField field="InvoiceDate" selected="False" />
+            <SelectField field="productId" selected="True" />
+            <SelectField field="countryId" selected="True" />
+            <SelectField field="amount" selected="False" />
+            <SelectField field="year" selected="False" />
+            <SelectField field="month" selected="False" />
+            <SelectField field="day" selected="False" />
+            <SelectField field="SupplierID" selected="False" />
+            <SelectField field="isCurrent_product" selected="False" />
+            <SelectField field="effectiveDate" selected="False" />
+            <SelectField field="*Unknown" selected="False" />
+          </SelectFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+    </Node>
+    <Node ToolID="332">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Sort.Sort">
+        <Position x="2082" y="282" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <SortInfo locale="1033">
+            <Field field="TransactionID" order="Ascending" />
+          </SortInfo>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>TransactionID - Ascending</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSort" />
+    </Node>
+    <Node ToolID="333">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Join.Join">
+        <Position x="2202" y="282" />
+      </GuiSettings>
+      <Properties>
+        <Configuration joinByRecordPos="False">
+          <JoinInfo connection="Left">
+            <Field field="TransactionID" />
+          </JoinInfo>
+          <JoinInfo connection="Right">
+            <Field field="TransactionID" />
+          </JoinInfo>
+          <SelectConfiguration>
+            <Configuration outputConnection="Join">
+              <OrderChanged value="False" />
+              <CommaDecimal value="False" />
+              <SelectFields>
+                <SelectField field="Left_customerSurrogate" selected="True" input="Left_" />
+                <SelectField field="Right_timeSurrogate" selected="True" input="Right_" />
+                <SelectField field="Right_TransactionID" selected="True" input="Right_" />
+                <SelectField field="Right_InvoiceNo" selected="True" input="Right_" />
+                <SelectField field="Right_StockCode" selected="True" input="Right_" />
+                <SelectField field="Right_Description" selected="True" input="Right_" />
+                <SelectField field="Right_Quantity" selected="True" input="Right_" />
+                <SelectField field="Right_UnitPrice" selected="True" input="Right_" />
+                <SelectField field="Right_CustomerID" selected="True" input="Right_" />
+                <SelectField field="Right_Country" selected="True" input="Right_" />
+                <SelectField field="Right_InvoiceDate" selected="True" input="Right_" />
+                <SelectField field="Right_countryId" selected="True" input="Right_" />
+                <SelectField field="Right_amount" selected="True" input="Right_" />
+                <SelectField field="Right_year" selected="True" input="Right_" />
+                <SelectField field="Right_month" selected="True" input="Right_" />
+                <SelectField field="Right_day" selected="True" input="Right_" />
+                <SelectField field="Right_SupplierID" selected="True" input="Right_" />
+                <SelectField field="Right_isCurrent_product" selected="True" input="Right_" />
+                <SelectField field="Right_effectiveDate" selected="True" input="Right_" />
+                <SelectField field="Right_productId" selected="True" input="Right_" />
+                <SelectField field="*Unknown" selected="False" />
+              </SelectFields>
+            </Configuration>
+          </SelectConfiguration>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxJoin" />
+    </Node>
+    <Node ToolID="334">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Unique.Unique">
+        <Position x="174" y="78" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <UniqueFields>
+            <Field field="customer_id" />
+          </UniqueFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxUnique" />
+    </Node>
+    <Node ToolID="335">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Unique.Unique">
+        <Position x="1470" y="66" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <UniqueFields>
+            <Field field="customerSurrogate" />
+          </UniqueFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxUnique" />
+    </Node>
+    <Node ToolID="336">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Unique.Unique">
+        <Position x="2142" y="426" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <UniqueFields>
+            <Field field="productId" />
+          </UniqueFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxUnique" />
+    </Node>
+    <Node ToolID="338">
+      <GuiSettings>
+        <Position x="114" y="78" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Value name="Check Box (135)">False</Value>
+          <Value name="Check Box (136)">False</Value>
+          <Value name="List Box (11)">"customer_id","name","gender","past_3_years_bike_related_purchases","DOB","age","job_title","job_industry_category","wealth_segment","deceased_indicator","owns_car","tenure"</Value>
+          <Value name="Check Box (84)">True</Value>
+          <Value name="Check Box (117)">True</Value>
+          <Value name="Check Box (15)">True</Value>
+          <Value name="Check Box (109)">True</Value>
+          <Value name="Check Box (122)">False</Value>
+          <Value name="Check Box (53)">False</Value>
+          <Value name="Check Box (58)">False</Value>
+          <Value name="Check Box (70)">False</Value>
+          <Value name="Check Box (77)">False</Value>
+          <Value name="Drop Down (81)">upper</Value>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+        <Dependencies>
+          <Implicit />
+        </Dependencies>
+      </Properties>
+      <EngineSettings Macro="Cleanse.yxmc" />
+    </Node>
+  </Nodes>
+  <Connections>
+    <Connection>
+      <Origin ToolID="90" Connection="Output" />
+      <Destination ToolID="164" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="110" Connection="Output" />
+      <Destination ToolID="313" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="137" Connection="Output" />
+      <Destination ToolID="141" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="141" Connection="Unique" />
+      <Destination ToolID="136" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="144" Connection="Output" />
+      <Destination ToolID="325" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="144" Connection="Output" />
+      <Destination ToolID="326" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="145" Connection="Output" />
+      <Destination ToolID="90" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="145" Connection="Output" />
+      <Destination ToolID="327" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="146" Connection="Output" />
+      <Destination ToolID="322" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="146" Connection="Output" />
+      <Destination ToolID="317" Connection="Right" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="314" Connection="Output" />
+      <Destination ToolID="317" Connection="Left" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="164" Connection="Output" />
+      <Destination ToolID="165" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="165" Connection="Output" />
+      <Destination ToolID="170" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="170" Connection="Output" />
+      <Destination ToolID="201" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="201" Connection="Output" />
+      <Destination ToolID="202" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="202" Connection="Output" />
+      <Destination ToolID="329" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="284" Connection="Output" />
+      <Destination ToolID="312" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="285" Connection="Output" />
+      <Destination ToolID="338" Connection="Input2" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="287" Connection="Unique" />
+      <Destination ToolID="146" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="288" Connection="Output" />
+      <Destination ToolID="292" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="289" Connection="True" />
+      <Destination ToolID="288" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="290" Connection="Output26" />
+      <Destination ToolID="287" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="292" Connection="Output" />
+      <Destination ToolID="110" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="293" Connection="False" />
+      <Destination ToolID="290" Connection="Input2" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="294" Connection="Output" />
+      <Destination ToolID="293" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="312" Connection="Output" />
+      <Destination ToolID="294" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="313" Connection="Output" />
+      <Destination ToolID="314" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="315" Connection="Output" />
+      <Destination ToolID="318" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="316" Connection="Output" />
+      <Destination ToolID="315" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="317" Connection="Join" />
+      <Destination ToolID="316" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="318" Connection="Output" />
+      <Destination ToolID="319" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="319" Connection="Output" />
+      <Destination ToolID="320" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="320" Connection="Output" />
+      <Destination ToolID="335" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="320" Connection="Output" />
+      <Destination ToolID="333" Connection="Left" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="332" Connection="Output" />
+      <Destination ToolID="333" Connection="Right" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="321" Connection="Output" />
+      <Destination ToolID="205" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="322" Connection="Output" />
+      <Destination ToolID="323" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="323" Connection="Output" />
+      <Destination ToolID="144" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="323" Connection="Output" />
+      <Destination ToolID="137" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="325" Connection="Output" />
+      <Destination ToolID="177" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="326" Connection="Output" />
+      <Destination ToolID="145" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="327" Connection="Output" />
+      <Destination ToolID="179" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="328" Connection="Output" />
+      <Destination ToolID="336" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="329" Connection="Output" />
+      <Destination ToolID="330" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="330" Connection="Output" />
+      <Destination ToolID="328" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="330" Connection="Output" />
+      <Destination ToolID="332" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="331" Connection="Output" />
+      <Destination ToolID="215" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="333" Connection="Join" />
+      <Destination ToolID="331" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="334" Connection="Unique" />
+      <Destination ToolID="289" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="335" Connection="Unique" />
+      <Destination ToolID="321" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="336" Connection="Unique" />
+      <Destination ToolID="182" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="338" Connection="Output26" />
+      <Destination ToolID="334" Connection="Input" />
+    </Connection>
+  </Connections>
+  <Properties>
+    <Memory default="True" />
+    <GlobalRecordLimit value="0" />
+    <TempFiles default="True" />
+    <Annotation on="True" includeToolName="False" />
+    <ConvErrorLimit value="10" />
+    <ConvErrorLimit_Stop value="False" />
+    <CancelOnError value="False" />
+    <DisableBrowse value="False" />
+    <EnablePerformanceProfiling value="False" />
+    <RunWithE2 value="True" />
+    <PredictiveToolsCodePage value="1252" />
+    <DisableAllOutput value="False" />
+    <ShowAllMacroMessages value="False" />
+    <ShowConnectionStatusIsOn value="True" />
+    <ShowConnectionStatusOnlyWhenRunning value="True" />
+    <ZoomLevel value="0" />
+    <LayoutType>Horizontal</LayoutType>
+    <MetaInfo>
+      <NameIsFileName value="True" />
+      <Name>GROUP_DWBI</Name>
+      <Description />
+      <RootToolName />
+      <ToolVersion />
+      <ToolInDb value="False" />
+      <CategoryName />
+      <SearchTags />
+      <Author />
+      <Company />
+      <Copyright />
+      <DescriptionLink actual="" displayed="" />
+      <Example>
+        <Description />
+        <File />
+      </Example>
+      <WorkflowId value="5910db93-d21d-44d1-8962-0d1131559884" />
+      <Telemetry>
+        <PreviousWorkflowId value="c9fad8f5-56af-4101-a572-4a8c0df2bb56" />
+        <OriginWorkflowId value="882103b6-b561-4cf3-850c-0e2669f2c4d0" />
+      </Telemetry>
+    </MetaInfo>
+    <Events>
+      <Enabled value="True" />
+    </Events>
+  </Properties>
+</AlteryxDocument>
