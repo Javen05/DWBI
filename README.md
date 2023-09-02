@@ -2,7 +2,7 @@
 Data Warehouse and Business Intelligence
 
 ## Takeaway from Project:
-Through this project, I learnt to design a star schema that is meant for storing data to be analyzed. I also learnt to use Alteryx for data cleaning and transformation, along with using SQL scripts to create tables and import data from csv files. Finally, I learnt how to generate insights and recommendations from interpreting data and visualizations I have created, and present them to stakeholders of the business.
+Through this project, I learnt to design a star schema for storing data in a format that enables intuitive usage and analysis. I also learnt to use stored procedures for updating SCDs in my dimension tables and using an SQL script to import data from CSV files, along with learning a new ETL tool, Alteryx, for data cleaning and transformation. Finally, I understood how to extract insights and generate actionable recommendations from data, and present them effectively to business stakeholders to help them make informed business decisions.
 
 ## About Project:
 ### Group
