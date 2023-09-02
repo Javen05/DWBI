@@ -1,0 +1,2927 @@
+<?xml version="1.0"?>
+<AlteryxDocument yxmdVer="2022.3">
+  <Nodes>
+    <Node ToolID="47">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileInput.DbFileInput">
+        <Position x="258" y="618" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Passwords>301000000D08C9DDF0115D1118C7A00C04FC297EB01000000B5D7D295199E7F4C8AB2459CA22C5ACE00000000080000005000570044000000106600000001000020000000054D6B52807C0BF3A2EC853F5494220CB9228EBD0C0F270D53EC95DE1FDE060C000000000E8000000002000020000000E3670DBA8A44BB94C0FFA68A3F64CAF7C86752524E6BC1BD4EC6FF66D1C6A66B10000000BFEF9137690A1EAD7666C592170123734000000080C6832F94CA4C26BAC3C05E7996D83AD9170535EAE7AE46722E7CA8F867929C35E1B67D6ECA24682DA98F635248946E8D01C7C4685EE8FE6B8BC295B9983B85</Passwords>
+          <File RecordLimit="" FileFormat="23">odbc:DSN=nwdw;UID=root;PWD=__EncPwd1__|||select fact_transaction.* 
+from fact_transaction</File>
+          <FormatSpecificOptions>
+            <PreSQL />
+            <ReadCentroids>False</ReadCentroids>
+            <PreSQLOnConfig>True</PreSQLOnConfig>
+            <NoProgress>True</NoProgress>
+            <SessionReadOnly>True</SessionReadOnly>
+            <CacheData>False</CacheData>
+            <TableStyle>Quoted</TableStyle>
+            <ReadUncommitted>False</ReadUncommitted>
+            <PostSQL />
+          </FormatSpecificOptions>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>DSN=nwdw
+Query=select fact_transaction.*...</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field description="PrimaryKey" name="transactionId" source="File: odbc:DSN=nwdw;UID=root;PWD=__EncPwd1__|||select fact_transaction.* &#xA;from fact_transaction" type="Int32" />
+            <Field name="invoiceNo" size="7" source="File: odbc:DSN=nwdw;UID=root;PWD=__EncPwd1__|||select fact_transaction.* &#xA;from fact_transaction" type="V_String" />
+            <Field name="quantity" source="File: odbc:DSN=nwdw;UID=root;PWD=__EncPwd1__|||select fact_transaction.* &#xA;from fact_transaction" type="Int32" />
+            <Field name="amount" source="File: odbc:DSN=nwdw;UID=root;PWD=__EncPwd1__|||select fact_transaction.* &#xA;from fact_transaction" type="Double" />
+            <Field name="FK_customerSurrogate" source="File: odbc:DSN=nwdw;UID=root;PWD=__EncPwd1__|||select fact_transaction.* &#xA;from fact_transaction" type="Int32" />
+            <Field name="FK_timeSurrogate" source="File: odbc:DSN=nwdw;UID=root;PWD=__EncPwd1__|||select fact_transaction.* &#xA;from fact_transaction" type="Int32" />
+            <Field name="FK_productId" source="File: odbc:DSN=nwdw;UID=root;PWD=__EncPwd1__|||select fact_transaction.* &#xA;from fact_transaction" type="Int32" />
+            <Field name="FK_countryId" source="File: odbc:DSN=nwdw;UID=root;PWD=__EncPwd1__|||select fact_transaction.* &#xA;from fact_transaction" type="Int32" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileInput" />
+    </Node>
+    <Node ToolID="49">
+      <GuiSettings>
+        <Position x="378" y="618" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Value name="Number">True</Value>
+          <Value name="NNumber">200000</Value>
+          <Value name="Percent">False</Value>
+          <Value name="NPercent">10</Value>
+          <Value name="Deterministic">True</Value>
+          <Value name="Seed">22029</Value>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings Macro="RandomRecords.yxmc" />
+    </Node>
+    <Node ToolID="51">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.TextToColumns.TextToColumns">
+        <Position x="126" y="402" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Field>description</Field>
+          <ErrorHandling>Last</ErrorHandling>
+          <RootName>Description</RootName>
+          <Delimeters value=" &quot; &quot;, &quot;,&quot;" />
+          <NumFields value="7" />
+          <Flags value="3" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxTextToColumns" />
+    </Node>
+    <Node ToolID="52">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+        <Position x="210" y="402" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <FormulaFields>
+            <FormulaField expression="IF NOT ISNULL([Description7]) AND REGEX_Match([Description7], '^[^0-9]*$') AND [Description7] = Uppercase([Description7]) THEN [Description7]&#xA;&#xA;ELSEIF NOT ISNULL([Description6]) AND REGEX_Match([Description5], '^[^0-9]*$') AND [Description6] = Uppercase([Description6]) THEN [Description6]&#xA;&#xA;ELSEIF NOT ISNULL([Description5]) AND REGEX_Match([Description5], '^[^0-9]*$') AND [Description5] = Uppercase([Description5]) THEN [Description5]&#xA;&#xA;ELSEIF NOT ISNULL([Description4]) AND REGEX_Match([Description4], '^[^0-9]*$') AND [Description4] = Uppercase([Description4]) THEN [Description4]&#xA;&#xA;ELSEIF NOT ISNULL([Description3]) AND REGEX_Match([Description3], '^[^0-9]*$') AND [Description3] = Uppercase([Description3]) THEN [Description3]&#xA;&#xA;ELSEIF NOT ISNULL([Description2]) AND REGEX_Match([Description2], '^[^0-9]*$') AND [Description2] = Uppercase([Description2]) THEN [Description2]&#xA;&#xA;ELSE [Description1]&#xA;ENDIF" field="Item" size="64" type="String" />
+          </FormulaFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Item = IF NOT ISNULL([Description7]) AND REGEX_Match([Description7], '^[^0-9]*$'...</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+    </Node>
+    <Node ToolID="54">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileInput.DbFileInput">
+        <Position x="54" y="402" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Passwords>301000000D08C9DDF0115D1118C7A00C04FC297EB01000000B5D7D295199E7F4C8AB2459CA22C5ACE0000000008000000500057004400000010660000000100002000000099F9213984045F63B1780709C19E1223D681FEB109CB884F187563D03BF5C510000000000E8000000002000020000000E6D060B417BEE13B8596D82A566752DC42E18978B36DA9A25AD5786E10F5DE0B1000000004AF9ABA3D9EBDA2F27313B6CED90976400000009CD3A48F8EEBEB6A17C978D1CEF7FD49901BBF314CBA010DEE80DC32A744A0567EBCC01699CE5F74F2D57EE11ACF3BAD41FC53C9D29A2DEB478B89132AAE61E8</Passwords>
+          <File RecordLimit="" FileFormat="23">odbc:DSN=nwdw;UID=root;PWD=__EncPwd1__|||select dim_product.* 
+from dim_product</File>
+          <FormatSpecificOptions>
+            <PreSQL />
+            <ReadCentroids>False</ReadCentroids>
+            <PreSQLOnConfig>True</PreSQLOnConfig>
+            <NoProgress>True</NoProgress>
+            <SessionReadOnly>True</SessionReadOnly>
+            <CacheData>False</CacheData>
+            <TableStyle>Quoted</TableStyle>
+            <ReadUncommitted>False</ReadUncommitted>
+            <PostSQL />
+          </FormatSpecificOptions>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>DSN=nwdw
+Query=select dim_product.* 
+from...</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field description="PrimaryKey" name="PK_productId" source="File: odbc:DSN=nwdw;UID=root;PWD=__EncPwd1__|||select dim_product.* &#xA;from dim_product" type="Int32" />
+            <Field name="stockCode" size="45" source="File: odbc:DSN=nwdw;UID=root;PWD=__EncPwd1__|||select dim_product.* &#xA;from dim_product" type="V_String" />
+            <Field name="description" size="100" source="File: odbc:DSN=nwdw;UID=root;PWD=__EncPwd1__|||select dim_product.* &#xA;from dim_product" type="V_String" />
+            <Field name="supplier" source="File: odbc:DSN=nwdw;UID=root;PWD=__EncPwd1__|||select dim_product.* &#xA;from dim_product" type="Int32" />
+            <Field name="unitPrice" scale="2" size="12" source="File: odbc:DSN=nwdw;UID=root;PWD=__EncPwd1__|||select dim_product.* &#xA;from dim_product" type="FixedDecimal" />
+            <Field name="effectiveDate" source="File: odbc:DSN=nwdw;UID=root;PWD=__EncPwd1__|||select dim_product.* &#xA;from dim_product" type="Date" />
+            <Field name="isCurrent" source="File: odbc:DSN=nwdw;UID=root;PWD=__EncPwd1__|||select dim_product.* &#xA;from dim_product" type="Int16" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileInput" />
+    </Node>
+    <Node ToolID="56">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+        <Position x="414" y="402" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <FormulaFields>
+            <FormulaField expression="IF [Description7] = [Item] THEN [Description6]&#xA;ELSEIF [Description6] = [Item] THEN [Description5]&#xA;ELSEIF [Description5] = [Item] THEN [Description4]&#xA;ELSEIF [Description4] = [Item] THEN [Description3]&#xA;ELSEIF [Description3] = [Item] THEN [Description2]&#xA;ELSE [Description1]&#xA;ENDIF" field="detail" size="64" type="String" />
+          </FormulaFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>detail = IF [Description7] = [Item] THEN [Description6]
+ELSEIF [Description6] = ...</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+    </Node>
+    <Node ToolID="65">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+        <Position x="306" y="402" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <FormulaFields>
+            <FormulaField expression="IF IsEmpty([Item]) THEN [Description2] ELSE [Item]&#xA;ENDIF" field="Item" size="64" type="String" />
+          </FormulaFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText><![CDATA[Item = IF IsEmpty([Item]) THEN [Description2] ELSE [Item]
+ENDIF
+]]></DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+    </Node>
+    <Node ToolID="66">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Join.Join">
+        <Position x="522" y="414" />
+      </GuiSettings>
+      <Properties>
+        <Configuration joinByRecordPos="False">
+          <JoinInfo connection="Left">
+            <Field field="PK_productId" />
+          </JoinInfo>
+          <JoinInfo connection="Right">
+            <Field field="FK_productId" />
+          </JoinInfo>
+          <SelectConfiguration>
+            <Configuration outputConnection="Join">
+              <OrderChanged value="False" />
+              <CommaDecimal value="False" />
+              <SelectFields>
+                <SelectField field="Left_stockCode" selected="True" input="Left_" />
+                <SelectField field="Left_supplier" selected="True" input="Left_" />
+                <SelectField field="Left_unitPrice" selected="True" input="Left_" />
+                <SelectField field="Left_effectiveDate" selected="True" input="Left_" />
+                <SelectField field="Left_isCurrect" selected="True" input="Left_" />
+                <SelectField field="Left_Item" selected="True" input="Left_" />
+                <SelectField field="Left_detail" selected="True" input="Left_" />
+                <SelectField field="Right_transactionId" selected="True" input="Right_" />
+                <SelectField field="Right_quantity" selected="True" input="Right_" />
+                <SelectField field="Right_amount" selected="True" input="Right_" />
+                <SelectField field="Right_FK_customerSurrogate" selected="True" input="Right_" />
+                <SelectField field="Right_FK_timeSurrogate" selected="True" input="Right_" />
+                <SelectField field="Right_country" selected="True" input="Right_" />
+                <SelectField field="Right_FK_invoiceNo" selected="True" input="Right_" />
+                <SelectField field="*Unknown" selected="False" />
+              </SelectFields>
+            </Configuration>
+          </SelectConfiguration>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxJoin" />
+    </Node>
+    <Node ToolID="67">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileInput.DbFileInput">
+        <Position x="366" y="678" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Passwords>301000000D08C9DDF0115D1118C7A00C04FC297EB01000000B5D7D295199E7F4C8AB2459CA22C5ACE000000000800000050005700440000001066000000010000200000001AF69D2EC890260F1A955D63CA095A01ECF8E35B1B40FEE16F7833AD0F0A8404000000000E8000000002000020000000CDF997BE3ED7E61BB9852E4D51C1C51AF4F57CFA31E7846721FC38D73A0911F410000000415208B7CA4AD81823174818B1903D9640000000428EE4E1DC82F0844EA04E194E28E06B25FDDB889B3F1F46F38A8227182D139CAE2A0E122CD81F2706DFF0520FF9D334A2BF6D094EF72FC21F885AC28A3EACBC</Passwords>
+          <File RecordLimit="" FileFormat="23">odbc:DSN=nwdw;UID=root;PWD=__EncPwd1__|||select * 
+from dim_country</File>
+          <FormatSpecificOptions>
+            <PreSQL />
+            <ReadCentroids>False</ReadCentroids>
+            <PreSQLOnConfig>True</PreSQLOnConfig>
+            <NoProgress>True</NoProgress>
+            <SessionReadOnly>True</SessionReadOnly>
+            <CacheData>False</CacheData>
+            <TableStyle>Quoted</TableStyle>
+            <ReadUncommitted>False</ReadUncommitted>
+            <PostSQL />
+          </FormatSpecificOptions>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>DSN=nwdw
+Query=select * 
+from dim_country</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field description="PrimaryKey" name="PK_countryId" source="File: odbc:DSN=nwdw;UID=root;PWD=__EncPwd1__|||select * &#xA;from dim_country" type="Int32" />
+            <Field name="country" size="60" source="File: odbc:DSN=nwdw;UID=root;PWD=__EncPwd1__|||select * &#xA;from dim_country" type="V_String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileInput" />
+    </Node>
+    <Node ToolID="68">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Join.Join">
+        <Position x="474" y="630" />
+      </GuiSettings>
+      <Properties>
+        <Configuration joinByRecordPos="False">
+          <JoinInfo connection="Left">
+            <Field field="FK_countryId" />
+          </JoinInfo>
+          <JoinInfo connection="Right">
+            <Field field="PK_countryId" />
+          </JoinInfo>
+          <SelectConfiguration>
+            <Configuration outputConnection="Join">
+              <OrderChanged value="False" />
+              <CommaDecimal value="False" />
+              <SelectFields>
+                <SelectField field="Left_transactionId" selected="True" input="Left_" />
+                <SelectField field="Left_quantity" selected="True" input="Left_" />
+                <SelectField field="Left_amount" selected="True" input="Left_" />
+                <SelectField field="Left_FK_customerSurrogate" selected="True" input="Left_" />
+                <SelectField field="Left_FK_timeSurrogate" selected="True" input="Left_" />
+                <SelectField field="Left_FK_productId" selected="True" input="Left_" />
+                <SelectField field="Right_country" selected="True" input="Right_" />
+                <SelectField field="Left_FK_invoiceNo" selected="True" input="Left_" />
+                <SelectField field="*Unknown" selected="False" />
+              </SelectFields>
+            </Configuration>
+          </SelectConfiguration>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxJoin" />
+    </Node>
+    <Node ToolID="69">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
+        <Position x="690" y="414" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Mode>Simple</Mode>
+          <Simple>
+            <Operator>=</Operator>
+            <Field>country</Field>
+            <Operands>
+              <IgnoreTimeInDateTime>True</IgnoreTimeInDateTime>
+              <DateType>fixed</DateType>
+              <PeriodDate>2023-08-15 21:02:13</PeriodDate>
+              <PeriodType>
+              </PeriodType>
+              <PeriodCount>0</PeriodCount>
+              <Operand>Spain</Operand>
+              <StartDate>2023-08-15 21:02:13</StartDate>
+              <EndDate>2023-08-15 21:02:13</EndDate>
+            </Operands>
+          </Simple>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>[country] = "Spain"</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFilter" />
+    </Node>
+    <Node ToolID="70">
+      <GuiSettings>
+        <Position x="606" y="414" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Value name="Check Box (135)">False</Value>
+          <Value name="Check Box (136)">False</Value>
+          <Value name="List Box (11)">"stockCode","supplier","unitPrice","effectiveDate","isCurrect","Item","detail","transactionId","quantity","FK_customerSurrogate","FK_invoiceNo","FK_timeSurrogate","country"</Value>
+          <Value name="Check Box (84)">True</Value>
+          <Value name="Check Box (117)">True</Value>
+          <Value name="Check Box (15)">True</Value>
+          <Value name="Check Box (109)">True</Value>
+          <Value name="Check Box (122)">False</Value>
+          <Value name="Check Box (53)">False</Value>
+          <Value name="Check Box (58)">False</Value>
+          <Value name="Check Box (70)">False</Value>
+          <Value name="Check Box (77)">False</Value>
+          <Value name="Drop Down (81)">upper</Value>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings Macro="Cleanse.yxmc" />
+    </Node>
+    <Node ToolID="71">
+      <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
+        <Position x="414" y="234" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <SummarizeFields>
+            <SummarizeField field="country" action="GroupBy" rename="country" />
+            <SummarizeField field="country" action="Count" rename="Count" />
+          </SummarizeFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxSpatialPluginsEngine.dll" EngineDllEntryPoint="AlteryxSummarize" />
+    </Node>
+    <Node ToolID="72">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Sort.Sort">
+        <Position x="510" y="234" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <SortInfo locale="1033">
+            <Field field="Count" order="Descending" />
+          </SortInfo>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Count - Descending</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSort" />
+    </Node>
+    <Node ToolID="73">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.BrowseV2.BrowseV2">
+        <Position x="618" y="234" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <TempFile>C:\Users\javen\AppData\Local\Temp\Engine_9060_708bbf087c0a8649978180c006c1b40d_\Engine_9060_7cfd021b2423f54787dc9bdb9b595015~.yxdb</TempFile>
+          <TempFileDataProfiling />
+          <Layout>
+            <ViewMode>Single</ViewMode>
+            <ViewSize value="100" />
+            <View1>
+              <DefaultTab>Profile</DefaultTab>
+              <Hints>
+                <Table />
+              </Hints>
+            </View1>
+            <View2 />
+          </Layout>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxBrowseV2" />
+    </Node>
+    <Node ToolID="74">
+      <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
+        <Position x="798" y="270" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <SummarizeFields>
+            <SummarizeField field="Item" action="GroupBy" rename="Item" />
+            <SummarizeField field="quantity" action="Sum" rename="Sum_quantity" />
+          </SummarizeFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxSpatialPluginsEngine.dll" EngineDllEntryPoint="AlteryxSummarize" />
+    </Node>
+    <Node ToolID="76">
+      <GuiSettings Plugin="PlotlyCharting">
+        <Position x="1134" y="246" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <ChartingFields>
+            <Traces json:Array="true" xmlns:json="http://james.newtonking.com/projects/json">
+              <type>bar</type>
+              <mode>markers</mode>
+              <orientation>h</orientation>
+              <ysrc>Item</ysrc>
+              <xsrc>Sum_quantity</xsrc>
+              <aggregationField>xsrc</aggregationField>
+              <aggregationFunction>sum</aggregationFunction>
+              <aggregationFieldName>Sum_quantity</aggregationFieldName>
+              <textposition>None</textposition>
+              <marker>
+                <line>
+                  <width>0</width>
+                </line>
+              </marker>
+              <name>&lt;br&gt;</name>
+            </Traces>
+            <Layout>
+              <title>
+                <text>Best Performing Product Types in Sales</text>
+              </title>
+              <font>
+                <family>sans-serif</family>
+                <size>12</size>
+              </font>
+              <autosize>false</autosize>
+              <width>1000</width>
+              <height>600</height>
+              <showlegend>true</showlegend>
+              <hovermode>closest</hovermode>
+              <xaxis>
+                <range>-4.7212163972961889</range>
+                <range>1051.7997541738812</range>
+                <autorange>false</autorange>
+                <title>
+                  <text>Quantity of Product purchased</text>
+                </title>
+                <type>linear</type>
+                <tickfont>
+                  <size>12</size>
+                </tickfont>
+                <nticks>0</nticks>
+              </xaxis>
+              <yaxis>
+                <range>-2.095078634430168</range>
+                <range>19.427700161081333</range>
+                <autorange>false</autorange>
+                <title>
+                  <text>
+                  </text>
+                </title>
+                <type>category</type>
+              </yaxis>
+              <legend>
+                <font>
+                  <size>12</size>
+                </font>
+                <borderwidth>0</borderwidth>
+              </legend>
+              <margin>
+                <pad>0</pad>
+                <t>100</t>
+                <b>80</b>
+                <l>80</l>
+                <r>80</r>
+              </margin>
+              <bargap>0.25</bargap>
+            </Layout>
+          </ChartingFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="PortfolioPluginsEngine.dll" EngineDllEntryPoint="ComposerInteractiveCharting" />
+    </Node>
+    <Node ToolID="77">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.BrowseV2.BrowseV2">
+        <Position x="1194" y="246" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <TempFile>C:\Users\javen\AppData\Local\Temp\Engine_9060_708bbf087c0a8649978180c006c1b40d_\Engine_9060_bf8ac8a48d43ca46b5c6ae83d0c00791~.yxdb</TempFile>
+          <TempFileDataProfiling />
+          <Layout>
+            <ViewMode>Single</ViewMode>
+            <ViewSize value="100" />
+            <View1>
+              <DefaultTab>Report</DefaultTab>
+              <Hints>
+                <Table />
+              </Hints>
+            </View1>
+            <View2 />
+          </Layout>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxBrowseV2" />
+    </Node>
+    <Node ToolID="78">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Sort.Sort">
+        <Position x="858" y="270" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <SortInfo locale="1033">
+            <Field field="Sum_quantity" order="Descending" />
+          </SortInfo>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Sum_quantity - Descending</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSort" />
+    </Node>
+    <Node ToolID="79">
+      <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
+        <Position x="798" y="402" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <SummarizeFields>
+            <SummarizeField field="detail" action="GroupBy" rename="detail" />
+            <SummarizeField field="quantity" action="Sum" rename="Sum_quantity" />
+          </SummarizeFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxSpatialPluginsEngine.dll" EngineDllEntryPoint="AlteryxSummarize" />
+    </Node>
+    <Node ToolID="80">
+      <GuiSettings Plugin="PlotlyCharting">
+        <Position x="1134" y="378" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <ChartingFields>
+            <Traces json:Array="true" xmlns:json="http://james.newtonking.com/projects/json">
+              <type>bar</type>
+              <mode>markers</mode>
+              <orientation>h</orientation>
+              <ysrc>detail</ysrc>
+              <xsrc>Sum_quantity</xsrc>
+              <aggregationField>xsrc</aggregationField>
+              <aggregationFunction>sum</aggregationFunction>
+              <aggregationFieldName>Sum_quantity</aggregationFieldName>
+              <textposition>None</textposition>
+              <marker>
+                <line>
+                  <width>0</width>
+                </line>
+              </marker>
+              <name>&lt;br&gt;</name>
+            </Traces>
+            <Layout>
+              <title>
+                <text>Best Performing Products in Sales</text>
+              </title>
+              <font>
+                <family>sans-serif</family>
+                <size>12</size>
+              </font>
+              <autosize>false</autosize>
+              <width>1000</width>
+              <height>600</height>
+              <showlegend>true</showlegend>
+              <hovermode>closest</hovermode>
+              <xaxis>
+                <range>8.8505690769017349</range>
+                <range>986.97981797377372</range>
+                <autorange>false</autorange>
+                <title>
+                  <text>Quantity of Product purchased</text>
+                </title>
+                <tickfont>
+                  <size>12</size>
+                </tickfont>
+                <nticks>0</nticks>
+                <type>linear</type>
+              </xaxis>
+              <yaxis>
+                <range>-2.2672837675187543</range>
+                <range>19.268228155856971</range>
+                <autorange>false</autorange>
+                <title>
+                  <text>
+                  </text>
+                </title>
+                <type>category</type>
+              </yaxis>
+              <legend>
+                <font>
+                  <size>12</size>
+                </font>
+                <borderwidth>0</borderwidth>
+              </legend>
+              <margin>
+                <pad>0</pad>
+                <t>100</t>
+                <b>80</b>
+                <l>80</l>
+                <r>80</r>
+              </margin>
+              <bargap>0.25</bargap>
+            </Layout>
+          </ChartingFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="PortfolioPluginsEngine.dll" EngineDllEntryPoint="ComposerInteractiveCharting" />
+    </Node>
+    <Node ToolID="81">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.BrowseV2.BrowseV2">
+        <Position x="1194" y="378" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <TempFile>C:\Users\javen\AppData\Local\Temp\Engine_9060_708bbf087c0a8649978180c006c1b40d_\Engine_9060_f062ee5eaa5d5f4a81a51dd51500edbe~.yxdb</TempFile>
+          <TempFileDataProfiling />
+          <Layout>
+            <ViewMode>Single</ViewMode>
+            <ViewSize value="100" />
+            <View1>
+              <DefaultTab>Report</DefaultTab>
+              <Hints>
+                <Table />
+              </Hints>
+            </View1>
+            <View2 />
+          </Layout>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxBrowseV2" />
+    </Node>
+    <Node ToolID="82">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Sort.Sort">
+        <Position x="858" y="402" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <SortInfo locale="1033">
+            <Field field="Sum_quantity" order="Descending" />
+          </SortInfo>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Sum_quantity - Descending</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSort" />
+    </Node>
+    <Node ToolID="83">
+      <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+        <Position x="222" y="354" width="144" height="36" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Text>Extracting product from raw description</Text>
+          <Font name="Arial Narrow" size="9.75" style="1" />
+          <TextColor name="Black" />
+          <FillColor name="White" />
+          <Shape shape="0" />
+          <Justification Justification="4" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="84">
+      <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+        <Position x="330" y="582" width="144" height="36" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Text>Sampling 200,000 Transactions</Text>
+          <Font name="Arial Narrow" size="9.75" style="1" />
+          <TextColor name="Black" />
+          <FillColor name="White" />
+          <Shape shape="0" />
+          <Justification Justification="4" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="85">
+      <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+        <Position x="426" y="198" width="144" height="36" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Text>Viewing transaction count for each country</Text>
+          <Font name="Arial Narrow" size="9.75" style="1" />
+          <TextColor name="Black" />
+          <FillColor name="White" />
+          <Shape shape="0" />
+          <Justification Justification="4" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="86">
+      <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+        <Position x="1254" y="258" width="144" height="36" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Text>Sales of product types</Text>
+          <Font name="Arial Narrow" size="9.75" style="1" />
+          <TextColor name="Black" />
+          <FillColor name="White" />
+          <Shape shape="0" />
+          <Justification Justification="4" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="87">
+      <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+        <Position x="1254" y="390" width="144" height="36" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Text>Sales of products</Text>
+          <Font name="Arial Narrow" size="9.75" style="1" />
+          <TextColor name="Black" />
+          <FillColor name="White" />
+          <Shape shape="0" />
+          <Justification Justification="4" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="90">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.RecordID.RecordID">
+        <Position x="546" y="798" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <FieldName>TransactionID</FieldName>
+          <StartValue>1</StartValue>
+          <FieldType>Int64</FieldType>
+          <FieldSize>6</FieldSize>
+          <Position>0</Position>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxRecordID" />
+    </Node>
+    <Node ToolID="91">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileInput.DbFileInput">
+        <Position x="78" y="798" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Passwords />
+          <File RecordLimit="" SearchSubDirs="False" FileFormat="0" OutputFileName="">C:\Users\javen\OneDrive - Temasek Polytechnic\Desktop\A-SCHOOL-2023\DWBI\die\transactiondata.csv</File>
+          <FormatSpecificOptions>
+            <HeaderRow>True</HeaderRow>
+            <IgnoreErrors>False</IgnoreErrors>
+            <AllowShareWrite>False</AllowShareWrite>
+            <ImportLine>1</ImportLine>
+            <FieldLen>254</FieldLen>
+            <SingleThreadRead>False</SingleThreadRead>
+            <IgnoreQuotes>DoubleQuotes</IgnoreQuotes>
+            <Delimeter>,</Delimeter>
+            <QuoteRecordBreak>False</QuoteRecordBreak>
+            <CodePage>28591</CodePage>
+          </FormatSpecificOptions>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>transactiondata.csv</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="InvoiceNo" size="254" source="File: C:\Users\javen\OneDrive - Temasek Polytechnic\Desktop\A-SCHOOL-2023\DWBI\die\transactiondata.csv" type="V_String" />
+            <Field name="StockCode" size="254" source="File: C:\Users\javen\OneDrive - Temasek Polytechnic\Desktop\A-SCHOOL-2023\DWBI\die\transactiondata.csv" type="V_String" />
+            <Field name="Description" size="254" source="File: C:\Users\javen\OneDrive - Temasek Polytechnic\Desktop\A-SCHOOL-2023\DWBI\die\transactiondata.csv" type="V_String" />
+            <Field name="Quantity" size="254" source="File: C:\Users\javen\OneDrive - Temasek Polytechnic\Desktop\A-SCHOOL-2023\DWBI\die\transactiondata.csv" type="V_String" />
+            <Field name="InvoiceDate" size="254" source="File: C:\Users\javen\OneDrive - Temasek Polytechnic\Desktop\A-SCHOOL-2023\DWBI\die\transactiondata.csv" type="V_String" />
+            <Field name="UnitPrice" size="254" source="File: C:\Users\javen\OneDrive - Temasek Polytechnic\Desktop\A-SCHOOL-2023\DWBI\die\transactiondata.csv" type="V_String" />
+            <Field name="CustomerID" size="254" source="File: C:\Users\javen\OneDrive - Temasek Polytechnic\Desktop\A-SCHOOL-2023\DWBI\die\transactiondata.csv" type="V_String" />
+            <Field name="Country" size="254" source="File: C:\Users\javen\OneDrive - Temasek Polytechnic\Desktop\A-SCHOOL-2023\DWBI\die\transactiondata.csv" type="V_String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileInput" />
+    </Node>
+    <Node ToolID="92">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Unique.Unique">
+        <Position x="474" y="810" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <UniqueFields>
+            <Field field="InvoiceNo" />
+            <Field field="StockCode" />
+            <Field field="Description" />
+            <Field field="Quantity" />
+            <Field field="UnitPrice" />
+            <Field field="CustomerID" />
+            <Field field="Country" />
+            <Field field="InvoiceDate" />
+          </UniqueFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxUnique" />
+    </Node>
+    <Node ToolID="93">
+      <GuiSettings>
+        <Position x="414" y="810" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Value name="Check Box (135)">False</Value>
+          <Value name="Check Box (136)">False</Value>
+          <Value name="List Box (11)">"InvoiceNo","StockCode","Description","Quantity","UnitPrice","CustomerID","Country","InvoiceDate"</Value>
+          <Value name="Check Box (84)">False</Value>
+          <Value name="Check Box (117)">False</Value>
+          <Value name="Check Box (15)">True</Value>
+          <Value name="Check Box (109)">True</Value>
+          <Value name="Check Box (122)">False</Value>
+          <Value name="Check Box (53)">False</Value>
+          <Value name="Check Box (58)">False</Value>
+          <Value name="Check Box (70)">False</Value>
+          <Value name="Check Box (77)">False</Value>
+          <Value name="Drop Down (81)">upper</Value>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings Macro="Cleanse.yxmc" />
+    </Node>
+    <Node ToolID="94">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Filter.Filter">
+        <Position x="342" y="798" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Mode>Simple</Mode>
+          <Simple>
+            <Operator>=</Operator>
+            <Field>UnitPrice</Field>
+            <Operands>
+              <IgnoreTimeInDateTime>True</IgnoreTimeInDateTime>
+              <DateType>fixed</DateType>
+              <PeriodDate>2023-07-25 11:48:06</PeriodDate>
+              <PeriodType>
+              </PeriodType>
+              <PeriodCount>0</PeriodCount>
+              <Operand>0</Operand>
+              <StartDate>2023-07-25 11:48:06</StartDate>
+              <EndDate>2023-07-25 11:48:06</EndDate>
+            </Operands>
+          </Simple>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>[UnitPrice] = 0</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFilter" />
+    </Node>
+    <Node ToolID="95">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
+        <Position x="270" y="798" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <OrderChanged value="False" />
+          <CommaDecimal value="False" />
+          <SelectFields>
+            <SelectField field="InvoiceNo" selected="True" />
+            <SelectField field="StockCode" selected="True" />
+            <SelectField field="Description" selected="True" />
+            <SelectField field="Quantity" selected="True" type="Int64" size="8" />
+            <SelectField field="UnitPrice" selected="True" type="Double" size="8" />
+            <SelectField field="CustomerID" selected="True" type="Double" size="8" />
+            <SelectField field="Country" selected="True" />
+            <SelectField field="InvoiceDate2" selected="True" rename="InvoiceDate" />
+            <SelectField field="*Unknown" selected="False" />
+          </SelectFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
+    </Node>
+    <Node ToolID="96">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DateTime.DateTime">
+        <Position x="186" y="798" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <IsFrom value="False" />
+          <InputFieldName>InvoiceDate</InputFieldName>
+          <Language>English</Language>
+          <Format>MM/dd/yyyy</Format>
+          <OutputFieldName>InvoiceDate</OutputFieldName>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Convert InvoiceDate From:
+MM/dd/yyyy</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDateTime" />
+    </Node>
+    <Node ToolID="97">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+        <Position x="630" y="798" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <FormulaFields>
+            <FormulaField expression="ToNumber(DateTimeFormat([InvoiceDate],&quot;%U&quot;))&#xA;" field="week" size="2" type="Int16" />
+          </FormulaFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText><![CDATA[week = ToNumber(DateTimeFormat([InvoiceDate],"%U"))
+
+]]></DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+    </Node>
+    <Node ToolID="98">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Join.Join">
+        <Position x="798" y="726" />
+      </GuiSettings>
+      <Properties>
+        <Configuration joinByRecordPos="False">
+          <JoinInfo connection="Left">
+            <Field field="transactionId" />
+          </JoinInfo>
+          <JoinInfo connection="Right">
+            <Field field="TransactionID" />
+          </JoinInfo>
+          <SelectConfiguration>
+            <Configuration outputConnection="Join">
+              <OrderChanged value="True" />
+              <CommaDecimal value="False" />
+              <SelectFields>
+                <SelectField field="Left_stockCode" selected="True" input="Left_" />
+                <SelectField field="Left_supplier" selected="True" input="Left_" />
+                <SelectField field="Left_unitPrice" selected="True" input="Left_" />
+                <SelectField field="Left_effectiveDate" selected="True" input="Left_" />
+                <SelectField field="Left_isCurrect" selected="True" input="Left_" />
+                <SelectField field="Left_Item" selected="True" input="Left_" />
+                <SelectField field="Left_detail" selected="True" input="Left_" />
+                <SelectField field="Left_transactionId" selected="True" input="Left_" />
+                <SelectField field="Left_quantity" selected="True" input="Left_" />
+                <SelectField field="Left_amount" selected="True" input="Left_" />
+                <SelectField field="Left_FK_customerSurrogate" selected="True" input="Left_" />
+                <SelectField field="Left_FK_timeSurrogate" selected="True" input="Left_" />
+                <SelectField field="Left_country" selected="True" input="Left_" />
+                <SelectField field="Right_week" selected="True" input="Right_" />
+                <SelectField field="Right_TransactionID" selected="False" rename="Right_TransactionID" input="Right_" />
+                <SelectField field="Right_InvoiceNo" selected="False" input="Right_" />
+                <SelectField field="Right_StockCode" selected="False" rename="Right_StockCode" input="Right_" />
+                <SelectField field="Right_Description" selected="False" input="Right_" />
+                <SelectField field="Right_Quantity" selected="False" rename="Right_Quantity" input="Right_" />
+                <SelectField field="Right_UnitPrice" selected="False" rename="Right_UnitPrice" input="Right_" />
+                <SelectField field="Right_CustomerID" selected="False" input="Right_" />
+                <SelectField field="Right_Country" selected="False" rename="Right_Country" input="Right_" />
+                <SelectField field="Right_InvoiceDate" selected="False" input="Right_" />
+                <SelectField field="*Unknown" selected="False" />
+              </SelectFields>
+            </Configuration>
+          </SelectConfiguration>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxJoin" />
+    </Node>
+    <Node ToolID="99">
+      <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+        <Position x="138" y="762" width="156" height="36" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Text>Extract date from silo spreadsheet, to create week</Text>
+          <Font name="Arial Narrow" size="9.75" style="1" />
+          <TextColor name="Black" />
+          <FillColor name="White" />
+          <Shape shape="0" />
+          <Justification Justification="4" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="100">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileInput.DbFileInput">
+        <Position x="882" y="774" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Passwords>301000000D08C9DDF0115D1118C7A00C04FC297EB01000000B5D7D295199E7F4C8AB2459CA22C5ACE000000000800000050005700440000001066000000010000200000008C2F267A9226753C1E40DB04E72FD2A149421C39DAD91313E1620A7EA5148AA1000000000E8000000002000020000000594E5ABB28E5F0F08D8731628A91430C520D010DE6AE12E972E643E309F3B51D1000000061ED2E8A81343F0623F49A204390C8B640000000C8A744AED2318A7FFF162D8B5D0ED21962080E07BB3618B93E94CF58E5C8D24B830AE0EF4B735C20A936C9EED312EB8F82BABDC05EE38B300C5B9D10CACDAF3E</Passwords>
+          <File RecordLimit="" FileFormat="23">odbc:DSN=nwdw;UID=root;PWD=__EncPwd1__|||select dim_time.* 
+from dim_time</File>
+          <FormatSpecificOptions>
+            <PreSQL />
+            <ReadCentroids>False</ReadCentroids>
+            <PreSQLOnConfig>True</PreSQLOnConfig>
+            <NoProgress>True</NoProgress>
+            <SessionReadOnly>True</SessionReadOnly>
+            <CacheData>False</CacheData>
+            <TableStyle>Quoted</TableStyle>
+            <ReadUncommitted>False</ReadUncommitted>
+            <PostSQL />
+          </FormatSpecificOptions>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>DSN=nwdw
+Query=select dim_time.* 
+from dim...</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field description="PrimaryKey" name="PK_timeSurrogate" source="File: odbc:DSN=nwdw;UID=root;PWD=__EncPwd1__|||select dim_time.* &#xA;from dim_time" type="Int32" />
+            <Field name="year" source="File: odbc:DSN=nwdw;UID=root;PWD=__EncPwd1__|||select dim_time.* &#xA;from dim_time" type="Int32" />
+            <Field name="month" size="3" source="File: odbc:DSN=nwdw;UID=root;PWD=__EncPwd1__|||select dim_time.* &#xA;from dim_time" type="V_String" />
+            <Field name="day" size="10" source="File: odbc:DSN=nwdw;UID=root;PWD=__EncPwd1__|||select dim_time.* &#xA;from dim_time" type="V_String" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileInput" />
+    </Node>
+    <Node ToolID="101">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Join.Join">
+        <Position x="990" y="678" />
+      </GuiSettings>
+      <Properties>
+        <Configuration joinByRecordPos="False">
+          <JoinInfo connection="Left">
+            <Field field="FK_timeSurrogate" />
+          </JoinInfo>
+          <JoinInfo connection="Right">
+            <Field field="PK_timeSurrogate" />
+          </JoinInfo>
+          <SelectConfiguration>
+            <Configuration outputConnection="Join">
+              <OrderChanged value="True" />
+              <CommaDecimal value="False" />
+              <SelectFields>
+                <SelectField field="Left_stockCode" selected="True" input="Left_" />
+                <SelectField field="Left_supplier" selected="True" input="Left_" />
+                <SelectField field="Left_unitPrice" selected="True" input="Left_" />
+                <SelectField field="Left_effectiveDate" selected="True" input="Left_" />
+                <SelectField field="Left_isCurrect" selected="True" input="Left_" />
+                <SelectField field="Left_Item" selected="True" input="Left_" />
+                <SelectField field="Left_detail" selected="True" input="Left_" />
+                <SelectField field="Left_transactionId" selected="True" input="Left_" />
+                <SelectField field="Left_quantity" selected="True" input="Left_" />
+                <SelectField field="Left_FK_customerSurrogate" selected="True" input="Left_" />
+                <SelectField field="Left_FK_invoiceNo" selected="False" input="Left_" />
+                <SelectField field="Left_FK_timeSurrogate" selected="False" input="Left_" />
+                <SelectField field="Left_country" selected="False" input="Left_" />
+                <SelectField field="Right_PK_timeSurrogate" selected="False" input="Right_" />
+                <SelectField field="Right_year" selected="True" input="Right_" />
+                <SelectField field="Right_month" selected="True" input="Right_" />
+                <SelectField field="Left_week" selected="True" input="Left_" />
+                <SelectField field="Right_day" selected="True" input="Right_" />
+                <SelectField field="Left_amount" selected="True" rename="price" input="Left_" />
+                <SelectField field="*Unknown" selected="False" />
+              </SelectFields>
+            </Configuration>
+          </SelectConfiguration>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxJoin" />
+    </Node>
+    <Node ToolID="104">
+      <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+        <Position x="882" y="894" width="156" height="36" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Text>Extracting time from time dimension</Text>
+          <Font name="Arial Narrow" size="9.75" style="1" />
+          <TextColor name="Black" />
+          <FillColor name="White" />
+          <Shape shape="0" />
+          <Justification Justification="4" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="117">
+      <GuiSettings Plugin="PlotlyCharting">
+        <Position x="1062" y="54" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <ChartingFields>
+            <Traces json:Array="true" xmlns:json="http://james.newtonking.com/projects/json">
+              <type>bar</type>
+              <mode>markers</mode>
+              <orientation>h</orientation>
+              <xsrc>Avg_amount</xsrc>
+              <ysrc>country</ysrc>
+              <textposition>None</textposition>
+              <marker>
+                <line>
+                  <width>0</width>
+                </line>
+              </marker>
+              <name>&lt;br&gt;</name>
+            </Traces>
+            <Layout>
+              <title>
+                <text>Average Transaction Amount across Countries</text>
+              </title>
+              <font>
+                <family>sans-serif</family>
+              </font>
+              <autosize>false</autosize>
+              <width>500</width>
+              <height>600</height>
+              <showlegend>true</showlegend>
+              <hovermode>closest</hovermode>
+              <xaxis>
+                <range>-7.41760054088985</range>
+                <range>127.38927804717895</range>
+                <autorange>false</autorange>
+                <title>
+                  <text>Average Transaction Amount</text>
+                </title>
+                <tickfont>
+                  <size>12</size>
+                </tickfont>
+                <nticks>0</nticks>
+                <type>linear</type>
+              </xaxis>
+              <yaxis>
+                <range>-2.5684749397955278</range>
+                <range>24.84179922542884</range>
+                <autorange>false</autorange>
+                <title>
+                  <text>&lt;br&gt;</text>
+                </title>
+                <type>category</type>
+              </yaxis>
+              <margin>
+                <pad>0</pad>
+                <t>100</t>
+                <b>80</b>
+                <l>80</l>
+                <r>80</r>
+              </margin>
+            </Layout>
+          </ChartingFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="PortfolioPluginsEngine.dll" EngineDllEntryPoint="ComposerInteractiveCharting" />
+    </Node>
+    <Node ToolID="118">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Sort.Sort">
+        <Position x="966" y="54" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <SortInfo locale="1033">
+            <Field field="Avg_amount" order="Descending" />
+          </SortInfo>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Avg_amount - Descending</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSort" />
+    </Node>
+    <Node ToolID="119">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.BrowseV2.BrowseV2">
+        <Position x="1158" y="54" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <TempFile>C:\Users\javen\AppData\Local\Temp\Engine_9060_708bbf087c0a8649978180c006c1b40d_\Engine_9060_42528c9604a67f459e57955f7883d828~.yxdb</TempFile>
+          <TempFileDataProfiling />
+          <Layout>
+            <ViewMode>Single</ViewMode>
+            <ViewSize value="100" />
+            <View1>
+              <DefaultTab>Report</DefaultTab>
+              <Hints>
+                <Table />
+              </Hints>
+            </View1>
+            <View2 />
+          </Layout>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxBrowseV2" />
+    </Node>
+    <Node ToolID="120">
+      <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
+        <Position x="870" y="150" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <SummarizeFields>
+            <SummarizeField field="country" action="GroupBy" rename="country" />
+            <SummarizeField field="Item" action="CountDistinct" rename="CountDistinct_Item" />
+            <SummarizeField field="detail" action="Mode" rename="Mode_detail" />
+            <SummarizeField field="Item" action="Mode" rename="Mode_Item" />
+            <SummarizeField field="supplier" action="Mode" rename="Mode_supplier" />
+            <SummarizeField field="amount" action="Avg" rename="Avg_amount" />
+          </SummarizeFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxSpatialPluginsEngine.dll" EngineDllEntryPoint="AlteryxSummarize" />
+    </Node>
+    <Node ToolID="121">
+      <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+        <Position x="1218" y="66" width="144" height="36" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Text>Average transaction amount per country</Text>
+          <Font name="Arial Narrow" size="9.75" style="1" />
+          <TextColor name="Black" />
+          <FillColor name="White" />
+          <Shape shape="0" />
+          <Justification Justification="4" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="124">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.BrowseV2.BrowseV2">
+        <Position x="1062" y="150" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <TempFile>C:\Users\javen\AppData\Local\Temp\Engine_9060_708bbf087c0a8649978180c006c1b40d_\Engine_9060_8aaa6073fb68d04b92fa7682d7d5347e~.yxdb</TempFile>
+          <TempFileDataProfiling />
+          <Layout>
+            <ViewMode>Single</ViewMode>
+            <ViewSize value="100" />
+            <View1>
+              <DefaultTab>Profile</DefaultTab>
+              <Hints>
+                <Table />
+              </Hints>
+            </View1>
+            <View2 />
+          </Layout>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxBrowseV2" />
+    </Node>
+    <Node ToolID="125">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Sort.Sort">
+        <Position x="966" y="150" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <SortInfo locale="1033">
+            <Field field="CountDistinct_Item" order="Descending" />
+          </SortInfo>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>CountDistinct_Item - Descending</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSort" />
+    </Node>
+    <Node ToolID="126">
+      <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+        <Position x="1122" y="162" width="192" height="36" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Text>variety and what types of products customers in each country prefer</Text>
+          <Font name="Arial Narrow" size="9.75" style="1" />
+          <TextColor name="Black" />
+          <FillColor name="White" />
+          <Shape shape="0" />
+          <Justification Justification="4" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="127">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.BrowseV2.BrowseV2">
+        <Position x="1170" y="786" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <TempFile>C:\Users\javen\AppData\Local\Temp\Engine_9060_708bbf087c0a8649978180c006c1b40d_\Engine_9060_1941a35e3374e14a9df625048563b093~.yxdb</TempFile>
+          <TempFileDataProfiling />
+          <Layout>
+            <ViewMode>Single</ViewMode>
+            <ViewSize value="100" />
+            <View1>
+              <DefaultTab>Profile</DefaultTab>
+              <Hints>
+                <Table />
+              </Hints>
+            </View1>
+            <View2 />
+          </Layout>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxBrowseV2" />
+    </Node>
+    <Node ToolID="128">
+      <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+        <Position x="1254" y="654" width="144" height="24" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Text>Sales across timeframes</Text>
+          <Font name="Arial Narrow" size="9.75" style="1" />
+          <TextColor name="Black" />
+          <FillColor name="White" />
+          <Shape shape="0" />
+          <Justification Justification="4" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="129">
+      <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+        <Position x="1230" y="798" width="144" height="36" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Text>Top products for each month</Text>
+          <Font name="Arial Narrow" size="9.75" style="1" />
+          <TextColor name="Black" />
+          <FillColor name="White" />
+          <Shape shape="0" />
+          <Justification Justification="4" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="130">
+      <GuiSettings Plugin="AlteryxSpatialPluginsGui.Summarize.Summarize">
+        <Position x="1086" y="786" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <SummarizeFields>
+            <SummarizeField field="month" action="GroupBy" rename="month" />
+            <SummarizeField field="detail" action="Mode" rename="Mode_detail" />
+            <SummarizeField field="Item" action="Mode" rename="Mode_Item" />
+            <SummarizeField field="supplier" action="Mode" rename="Mode_supplier" />
+          </SummarizeFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxSpatialPluginsEngine.dll" EngineDllEntryPoint="AlteryxSummarize" />
+    </Node>
+    <Node ToolID="131">
+      <GuiSettings Plugin="PlotlyCharting">
+        <Position x="1134" y="498" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <ChartingFields>
+            <Traces json:Array="true" xmlns:json="http://james.newtonking.com/projects/json">
+              <type>pie</type>
+              <mode>markers</mode>
+              <labelssrc>wealthSegment</labelssrc>
+              <marker>
+                <line>
+                  <width>0</width>
+                </line>
+              </marker>
+              <textinfo>label+value+percent</textinfo>
+              <sort>true</sort>
+              <hoverinfo>percent+label+value</hoverinfo>
+            </Traces>
+            <Layout>
+              <title>
+                <text>Customer Type in Spain</text>
+              </title>
+              <font>
+                <family>sans-serif</family>
+                <size>12</size>
+              </font>
+              <autosize>false</autosize>
+              <width>700</width>
+              <height>600</height>
+              <showlegend>true</showlegend>
+              <hovermode>closest</hovermode>
+              <xaxis>
+                <range>-2.8114969224027737</range>
+                <range>6.6375147306292508</range>
+                <autorange>false</autorange>
+              </xaxis>
+              <yaxis>
+                <range>-1.8866789619501994</range>
+                <range>4.8626150759298179</range>
+                <autorange>false</autorange>
+              </yaxis>
+              <margin>
+                <pad>0</pad>
+                <t>100</t>
+                <b>80</b>
+                <l>80</l>
+                <r>80</r>
+              </margin>
+              <legend>
+                <font>
+                  <size>12</size>
+                </font>
+                <borderwidth>0</borderwidth>
+              </legend>
+            </Layout>
+          </ChartingFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="PortfolioPluginsEngine.dll" EngineDllEntryPoint="ComposerInteractiveCharting" />
+    </Node>
+    <Node ToolID="132">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.BrowseV2.BrowseV2">
+        <Position x="1218" y="498" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <TempFile>C:\Users\javen\AppData\Local\Temp\Engine_9060_708bbf087c0a8649978180c006c1b40d_\Engine_9060_0619d9bea9076b449799c30cb220da54~.yxdb</TempFile>
+          <TempFileDataProfiling />
+          <Layout>
+            <ViewMode>Single</ViewMode>
+            <ViewSize value="100" />
+            <View1>
+              <DefaultTab>Report</DefaultTab>
+              <Hints>
+                <Table />
+              </Hints>
+            </View1>
+            <View2 />
+          </Layout>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxBrowseV2" />
+    </Node>
+    <Node ToolID="133">
+      <GuiSettings Plugin="PlotlyCharting">
+        <Position x="1134" y="558" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <ChartingFields>
+            <Traces json:Array="true" xmlns:json="http://james.newtonking.com/projects/json">
+              <type>bar</type>
+              <mode>markers</mode>
+              <orientation>v</orientation>
+              <xsrc>age</xsrc>
+              <textposition>None</textposition>
+              <marker>
+                <line>
+                  <width>0</width>
+                </line>
+                <color>rgb(31, 180, 33)</color>
+              </marker>
+              <hoverinfo>x+y</hoverinfo>
+              <showlegend>false</showlegend>
+              <ysrc>quantity</ysrc>
+            </Traces>
+            <Layout>
+              <title>
+                <text>Number of purchases made per age group</text>
+              </title>
+              <font>
+                <family>sans-serif</family>
+                <size>12</size>
+              </font>
+              <autosize>false</autosize>
+              <width>800</width>
+              <height>600</height>
+              <showlegend>true</showlegend>
+              <hovermode>closest</hovermode>
+              <xaxis>
+                <range>16.686638714008506</range>
+                <range>79.806569833052237</range>
+                <autorange>false</autorange>
+                <title>
+                  <text>Age</text>
+                </title>
+                <tickfont>
+                  <size>12</size>
+                </tickfont>
+                <nticks>0</nticks>
+                <type>linear</type>
+              </xaxis>
+              <yaxis>
+                <range>-335.25811507583484</range>
+                <range>2556.13005647645</range>
+                <autorange>false</autorange>
+                <title>
+                  <text>Purchases (quantity)</text>
+                </title>
+                <type>linear</type>
+              </yaxis>
+              <barnorm>0</barnorm>
+              <bargap>0.29000000000000004</bargap>
+              <margin>
+                <pad>0</pad>
+                <t>100</t>
+                <b>80</b>
+                <l>80</l>
+                <r>80</r>
+              </margin>
+              <legend>
+                <font>
+                  <size>12</size>
+                </font>
+                <borderwidth>0</borderwidth>
+              </legend>
+            </Layout>
+          </ChartingFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="PortfolioPluginsEngine.dll" EngineDllEntryPoint="ComposerInteractiveCharting" />
+    </Node>
+    <Node ToolID="134">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.BrowseV2.BrowseV2">
+        <Position x="1218" y="558" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <TempFile>C:\Users\javen\AppData\Local\Temp\Engine_9060_708bbf087c0a8649978180c006c1b40d_\Engine_9060_10007b0152ee3b49871cbea86db9e734~.yxdb</TempFile>
+          <TempFileDataProfiling />
+          <Layout>
+            <ViewMode>Single</ViewMode>
+            <ViewSize value="100" />
+            <View1>
+              <DefaultTab>Report</DefaultTab>
+              <Hints>
+                <Table />
+              </Hints>
+            </View1>
+            <View2 />
+          </Layout>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxBrowseV2" />
+    </Node>
+    <Node ToolID="135">
+      <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+        <Position x="1278" y="510" width="144" height="36" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Text>Customer Wealth segment ratio</Text>
+          <Font name="Arial Narrow" size="9.75" style="1" />
+          <TextColor name="Black" />
+          <FillColor name="White" />
+          <Shape shape="0" />
+          <Justification Justification="4" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="136">
+      <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+        <Position x="1278" y="570" width="144" height="36" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Text>Number of purchases per age</Text>
+          <Font name="Arial Narrow" size="9.75" style="1" />
+          <TextColor name="Black" />
+          <FillColor name="White" />
+          <Shape shape="0" />
+          <Justification Justification="4" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+    <Node ToolID="138">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileInput.DbFileInput">
+        <Position x="798" y="606" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Passwords>301000000D08C9DDF0115D1118C7A00C04FC297EB01000000B5D7D295199E7F4C8AB2459CA22C5ACE00000000080000005000570044000000106600000001000020000000B838858D85DB02CD1B3776E8F13E3F62847377F0AB9FE3246750E91DB9C93D1B000000000E80000000020000200000000BBC1A5B45642D9329B4EEB5F4D0518129FEF9861055C5652999176EDAAB5EC610000000F0A028E1647732ECB8B6496227DFB5EE400000000C0CBD3C7C91D7C3888105208FD214D9937DD4D3E40D56E93C8439B6C2E04ECC00FF391116FB9354C693E35C593C1ABA2D860E7EE78FDA2BFF8A2F78A1B8BE48</Passwords>
+          <File RecordLimit="" FileFormat="23">odbc:DSN=nwdw;UID=root;PWD=__EncPwd1__|||select dim_customer.* 
+from dim_customer</File>
+          <FormatSpecificOptions>
+            <PreSQL />
+            <ReadCentroids>False</ReadCentroids>
+            <PreSQLOnConfig>True</PreSQLOnConfig>
+            <NoProgress>True</NoProgress>
+            <SessionReadOnly>True</SessionReadOnly>
+            <CacheData>False</CacheData>
+            <TableStyle>Quoted</TableStyle>
+            <ReadUncommitted>False</ReadUncommitted>
+            <PostSQL />
+          </FormatSpecificOptions>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>DSN=nwdw
+Query=select dim_customer.* 
+from...</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field description="PrimaryKey" name="PK_customerSurrogate" source="File: odbc:DSN=nwdw;UID=root;PWD=__EncPwd1__|||select dim_customer.* &#xA;from dim_customer" type="Int32" />
+            <Field name="name" size="45" source="File: odbc:DSN=nwdw;UID=root;PWD=__EncPwd1__|||select dim_customer.* &#xA;from dim_customer" type="V_String" />
+            <Field name="age" source="File: odbc:DSN=nwdw;UID=root;PWD=__EncPwd1__|||select dim_customer.* &#xA;from dim_customer" type="Int32" />
+            <Field name="gender" size="7" source="File: odbc:DSN=nwdw;UID=root;PWD=__EncPwd1__|||select dim_customer.* &#xA;from dim_customer" type="V_String" />
+            <Field name="past_3_years_bike_related_purchases" source="File: odbc:DSN=nwdw;UID=root;PWD=__EncPwd1__|||select dim_customer.* &#xA;from dim_customer" type="Int32" />
+            <Field name="dateOfBirth" source="File: odbc:DSN=nwdw;UID=root;PWD=__EncPwd1__|||select dim_customer.* &#xA;from dim_customer" type="Date" />
+            <Field name="jobTitle" size="45" source="File: odbc:DSN=nwdw;UID=root;PWD=__EncPwd1__|||select dim_customer.* &#xA;from dim_customer" type="V_String" />
+            <Field name="jobIndustry" size="45" source="File: odbc:DSN=nwdw;UID=root;PWD=__EncPwd1__|||select dim_customer.* &#xA;from dim_customer" type="V_String" />
+            <Field name="wealthSegment" size="45" source="File: odbc:DSN=nwdw;UID=root;PWD=__EncPwd1__|||select dim_customer.* &#xA;from dim_customer" type="V_String" />
+            <Field name="ownsCar" size="3" source="File: odbc:DSN=nwdw;UID=root;PWD=__EncPwd1__|||select dim_customer.* &#xA;from dim_customer" type="V_String" />
+            <Field name="tenure" source="File: odbc:DSN=nwdw;UID=root;PWD=__EncPwd1__|||select dim_customer.* &#xA;from dim_customer" type="Int16" />
+            <Field name="customerId" source="File: odbc:DSN=nwdw;UID=root;PWD=__EncPwd1__|||select dim_customer.* &#xA;from dim_customer" type="Int32" />
+            <Field name="effectiveDate" source="File: odbc:DSN=nwdw;UID=root;PWD=__EncPwd1__|||select dim_customer.* &#xA;from dim_customer" type="Date" />
+            <Field name="isCurrent" source="File: odbc:DSN=nwdw;UID=root;PWD=__EncPwd1__|||select dim_customer.* &#xA;from dim_customer" type="Int16" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileInput" />
+    </Node>
+    <Node ToolID="139">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Join.Join">
+        <Position x="894" y="558" />
+      </GuiSettings>
+      <Properties>
+        <Configuration joinByRecordPos="False">
+          <JoinInfo connection="Left">
+            <Field field="FK_customerSurrogate" />
+          </JoinInfo>
+          <JoinInfo connection="Right">
+            <Field field="PK_customerSurrogate" />
+          </JoinInfo>
+          <SelectConfiguration>
+            <Configuration outputConnection="Join">
+              <OrderChanged value="False" />
+              <CommaDecimal value="False" />
+              <SelectFields>
+                <SelectField field="Left_stockCode" selected="True" input="Left_" />
+                <SelectField field="Left_supplier" selected="True" input="Left_" />
+                <SelectField field="Left_unitPrice" selected="True" input="Left_" />
+                <SelectField field="Left_effectiveDate" selected="True" input="Left_" />
+                <SelectField field="Left_isCurrect" selected="True" rename="product_flag" input="Left_" />
+                <SelectField field="Left_Item" selected="True" input="Left_" />
+                <SelectField field="Left_detail" selected="True" input="Left_" />
+                <SelectField field="Left_transactionId" selected="True" input="Left_" />
+                <SelectField field="Left_quantity" selected="True" input="Left_" />
+                <SelectField field="Left_FK_invoiceNo" selected="True" input="Left_" />
+                <SelectField field="Left_FK_timeSurrogate" selected="True" input="Left_" />
+                <SelectField field="Left_country" selected="True" input="Left_" />
+                <SelectField field="Right_age" selected="True" input="Right_" />
+                <SelectField field="Right_wealthSegment" selected="True" input="Right_" />
+                <SelectField field="Right_customerId" selected="True" input="Right_" />
+                <SelectField field="Right_isCurrent" selected="False" rename="customer_flag" input="Right_" />
+                <SelectField field="Left_amount" selected="True" input="Left_" />
+                <SelectField field="*Unknown" selected="False" />
+              </SelectFields>
+            </Configuration>
+          </SelectConfiguration>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxJoin" />
+    </Node>
+    <Node ToolID="140">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Unique.Unique">
+        <Position x="1014" y="510" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <UniqueFields>
+            <Field field="customerId" />
+          </UniqueFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxUnique" />
+    </Node>
+    <Node ToolID="144">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Sample.Sample">
+        <Position x="1038" y="246" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Mode>First</Mode>
+          <N>20</N>
+          <GroupFields orderChanged="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>First 20 rows</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSample" />
+    </Node>
+    <Node ToolID="145">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Sample.Sample">
+        <Position x="966" y="294" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Mode>Last</Mode>
+          <N>25</N>
+          <GroupFields orderChanged="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Last 25 rows</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSample" />
+    </Node>
+    <Node ToolID="146">
+      <GuiSettings Plugin="PlotlyCharting">
+        <Position x="1134" y="294" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <ChartingFields>
+            <Traces json:Array="true" xmlns:json="http://james.newtonking.com/projects/json">
+              <type>bar</type>
+              <mode>markers</mode>
+              <orientation>h</orientation>
+              <ysrc>Item</ysrc>
+              <xsrc>Sum_quantity</xsrc>
+              <aggregationField>xsrc</aggregationField>
+              <aggregationFunction>sum</aggregationFunction>
+              <aggregationFieldName>Sum_quantity</aggregationFieldName>
+              <textposition>None</textposition>
+              <marker>
+                <line>
+                  <width>0</width>
+                </line>
+              </marker>
+              <name>&lt;br&gt;</name>
+            </Traces>
+            <Layout>
+              <title>
+                <text>Worst Performing Product Types in Sales</text>
+              </title>
+              <font>
+                <family>sans-serif</family>
+                <size>12</size>
+              </font>
+              <autosize>false</autosize>
+              <width>1000</width>
+              <height>600</height>
+              <showlegend>true</showlegend>
+              <hovermode>closest</hovermode>
+              <xaxis>
+                <range>-7.7583400493378</range>
+                <range>6.2079985029284446</range>
+                <autorange>false</autorange>
+                <title>
+                  <text>Quantity of Product purchased</text>
+                </title>
+                <type>linear</type>
+                <tickfont>
+                  <size>12</size>
+                </tickfont>
+                <nticks>0</nticks>
+              </xaxis>
+              <yaxis>
+                <range>-1.7570469117900309</range>
+                <range>25.534855886655624</range>
+                <autorange>false</autorange>
+                <title>
+                  <text>
+                  </text>
+                </title>
+                <type>category</type>
+              </yaxis>
+              <legend>
+                <font>
+                  <size>12</size>
+                </font>
+                <borderwidth>0</borderwidth>
+              </legend>
+              <margin>
+                <pad>0</pad>
+                <t>100</t>
+                <b>80</b>
+                <l>80</l>
+                <r>80</r>
+              </margin>
+              <bargap>0.25</bargap>
+            </Layout>
+          </ChartingFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="PortfolioPluginsEngine.dll" EngineDllEntryPoint="ComposerInteractiveCharting" />
+    </Node>
+    <Node ToolID="147">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.BrowseV2.BrowseV2">
+        <Position x="1194" y="294" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <TempFile>C:\Users\javen\AppData\Local\Temp\Engine_9060_708bbf087c0a8649978180c006c1b40d_\Engine_9060_48be22d6996eba44928331f7a8819445~.yxdb</TempFile>
+          <TempFileDataProfiling />
+          <Layout>
+            <ViewMode>Single</ViewMode>
+            <ViewSize value="100" />
+            <View1>
+              <DefaultTab>Report</DefaultTab>
+              <Hints>
+                <Table />
+              </Hints>
+            </View1>
+            <View2 />
+          </Layout>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxBrowseV2" />
+    </Node>
+    <Node ToolID="148">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Sample.Sample">
+        <Position x="1038" y="378" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Mode>First</Mode>
+          <N>20</N>
+          <GroupFields orderChanged="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>First 20 rows</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSample" />
+    </Node>
+    <Node ToolID="149">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Sample.Sample">
+        <Position x="966" y="426" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Mode>Last</Mode>
+          <N>20</N>
+          <GroupFields orderChanged="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>Last 20 rows</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSample" />
+    </Node>
+    <Node ToolID="150">
+      <GuiSettings Plugin="PlotlyCharting">
+        <Position x="1134" y="426" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <ChartingFields>
+            <Traces json:Array="true" xmlns:json="http://james.newtonking.com/projects/json">
+              <type>bar</type>
+              <mode>markers</mode>
+              <orientation>h</orientation>
+              <ysrc>detail</ysrc>
+              <xsrc>Sum_quantity</xsrc>
+              <aggregationField>xsrc</aggregationField>
+              <aggregationFunction>sum</aggregationFunction>
+              <aggregationFieldName>Sum_quantity</aggregationFieldName>
+              <textposition>None</textposition>
+              <marker>
+                <line>
+                  <width>0</width>
+                </line>
+              </marker>
+              <name>&lt;br&gt;</name>
+            </Traces>
+            <Layout>
+              <title>
+                <text>Worst Performing Products in Sales</text>
+              </title>
+              <font>
+                <family>sans-serif</family>
+                <size>12</size>
+              </font>
+              <autosize>false</autosize>
+              <width>1000</width>
+              <height>600</height>
+              <showlegend>true</showlegend>
+              <hovermode>closest</hovermode>
+              <xaxis>
+                <range>-36.846215858534</range>
+                <range>28.023252122950449</range>
+                <autorange>false</autorange>
+                <title>
+                  <text>Quantity of Product purchased</text>
+                </title>
+                <tickfont>
+                  <size>12</size>
+                </tickfont>
+                <nticks>0</nticks>
+                <type>linear</type>
+              </xaxis>
+              <yaxis>
+                <range>-1.2554652573012355</range>
+                <range>19.783898736727338</range>
+                <autorange>false</autorange>
+                <title>
+                  <text>
+                  </text>
+                </title>
+                <type>category</type>
+              </yaxis>
+              <legend>
+                <font>
+                  <size>12</size>
+                </font>
+                <borderwidth>0</borderwidth>
+              </legend>
+              <margin>
+                <pad>0</pad>
+                <t>100</t>
+                <b>80</b>
+                <l>80</l>
+                <r>80</r>
+              </margin>
+              <bargap>0.25</bargap>
+            </Layout>
+          </ChartingFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="PortfolioPluginsEngine.dll" EngineDllEntryPoint="ComposerInteractiveCharting" />
+    </Node>
+    <Node ToolID="151">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.BrowseV2.BrowseV2">
+        <Position x="1194" y="426" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <TempFile>C:\Users\javen\AppData\Local\Temp\Engine_9060_708bbf087c0a8649978180c006c1b40d_\Engine_9060_0a939504f138364598089bdb68a6cd5c~.yxdb</TempFile>
+          <TempFileDataProfiling />
+          <Layout>
+            <ViewMode>Single</ViewMode>
+            <ViewSize value="100" />
+            <View1>
+              <DefaultTab>Report</DefaultTab>
+              <Hints>
+                <Table />
+              </Hints>
+            </View1>
+            <View2 />
+          </Layout>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxBrowseV2" />
+    </Node>
+    <Node ToolID="152">
+      <GuiSettings Plugin="Insights">
+        <Position x="1194" y="642" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <InsightFields>
+            <InsightData>C:\Users\javen\AppData\Local\Temp\Engine_9060_708bbf087c0a8649978180c006c1b40d_\Insight1\insight.sqlite|||insightdata</InsightData>
+            <InsightDescription>C:\Users\javen\AppData\Local\Temp\Engine_9060_708bbf087c0a8649978180c006c1b40d_\Insight1\insightDescription.json</InsightDescription>
+            <Description>
+              <Elements>
+                <CHART>
+                  <x>13</x>
+                  <y>26</y>
+                  <id>insight-0</id>
+                  <width>542</width>
+                  <height>483</height>
+                  <type>CHART</type>
+                  <elementProps>
+                    <layout>
+                      <title>
+                        <text>Proportion of Sales across the week</text>
+                      </title>
+                      <font>
+                        <family>sans-serif</family>
+                        <size>20</size>
+                      </font>
+                      <autosize>false</autosize>
+                      <width>542</width>
+                      <height>483</height>
+                      <showlegend>true</showlegend>
+                      <hovermode>closest</hovermode>
+                      <xaxis>
+                        <range>-11.342458288846387</range>
+                        <range>938.65754171115384</range>
+                        <autorange>false</autorange>
+                        <title>
+                          <text>Quantity Purchased</text>
+                        </title>
+                        <tickfont>
+                          <size>12</size>
+                        </tickfont>
+                        <nticks>0</nticks>
+                      </xaxis>
+                      <yaxis>
+                        <range>-290.29928883302819</range>
+                        <range>1190.8368198056337</range>
+                        <autorange>false</autorange>
+                        <title>
+                          <text>&lt;br&gt;</text>
+                        </title>
+                      </yaxis>
+                      <margin>
+                        <pad>0</pad>
+                        <t>100</t>
+                        <b>80</b>
+                        <l>80</l>
+                        <r>80</r>
+                      </margin>
+                      <legend>
+                        <font>
+                          <size>18</size>
+                          <family>monospace</family>
+                          <color>rgb(0, 0, 0)</color>
+                        </font>
+                        <borderwidth>0</borderwidth>
+                        <orientation>v</orientation>
+                        <traceorder>normal</traceorder>
+                      </legend>
+                      <bargap>0.19999999999999996</bargap>
+                      <extendpiecolors>true</extendpiecolors>
+                      <piecolorway>#2E91E5</piecolorway>
+                      <piecolorway>#E15F99</piecolorway>
+                      <piecolorway>#1CA71C</piecolorway>
+                      <piecolorway>#FB0D0D</piecolorway>
+                      <piecolorway>#DA16FF</piecolorway>
+                      <piecolorway>#222A2A</piecolorway>
+                      <piecolorway>#B68100</piecolorway>
+                      <piecolorway>#750D86</piecolorway>
+                      <piecolorway>#EB663B</piecolorway>
+                      <piecolorway>#511CFB</piecolorway>
+                      <piecolorway>#00A08B</piecolorway>
+                      <piecolorway>#FB00D1</piecolorway>
+                      <piecolorway>#FC0080</piecolorway>
+                      <piecolorway>#B2828D</piecolorway>
+                      <piecolorway>#6C7C32</piecolorway>
+                      <piecolorway>#778AAE</piecolorway>
+                      <piecolorway>#862A16</piecolorway>
+                      <piecolorway>#A777F1</piecolorway>
+                      <piecolorway>#620042</piecolorway>
+                      <piecolorway>#1616A7</piecolorway>
+                      <piecolorway>#DA60CA</piecolorway>
+                      <piecolorway>#6C4516</piecolorway>
+                      <piecolorway>#0D2A63</piecolorway>
+                      <piecolorway>#AF0038</piecolorway>
+                    </layout>
+                    <data xmlns:json="http://james.newtonking.com/projects/json" json:Array="true">
+                      <type>pie</type>
+                      <mode>markers</mode>
+                      <orientation>h</orientation>
+                      <textposition>None</textposition>
+                      <marker>
+                        <line>
+                          <width>0</width>
+                        </line>
+                      </marker>
+                      <valuessrc>quantity</valuessrc>
+                      <labelssrc>day</labelssrc>
+                      <hoverinfo>percent+label+value</hoverinfo>
+                      <textinfo>label+percent</textinfo>
+                      <hole>0</hole>
+                    </data>
+                  </elementProps>
+                </CHART>
+                <CHART>
+                  <x>532</x>
+                  <y>25</y>
+                  <id>insight-1</id>
+                  <width>687</width>
+                  <height>471</height>
+                  <type>CHART</type>
+                  <elementProps>
+                    <layout>
+                      <title>
+                        <text>Proportion of Sales across the months</text>
+                      </title>
+                      <font>
+                        <family>sans-serif</family>
+                        <size>20</size>
+                      </font>
+                      <autosize>false</autosize>
+                      <width>687</width>
+                      <height>471</height>
+                      <showlegend>true</showlegend>
+                      <hovermode>closest</hovermode>
+                      <xaxis>
+                        <range>-11.342458288846387</range>
+                        <range>938.65754171115384</range>
+                        <autorange>false</autorange>
+                        <title>
+                          <text>Quantity Purchased</text>
+                        </title>
+                        <tickfont>
+                          <size>12</size>
+                        </tickfont>
+                        <nticks>0</nticks>
+                      </xaxis>
+                      <yaxis>
+                        <range>-290.29928883302819</range>
+                        <range>1190.8368198056337</range>
+                        <autorange>false</autorange>
+                        <title>
+                          <text>&lt;br&gt;</text>
+                        </title>
+                      </yaxis>
+                      <margin>
+                        <pad>0</pad>
+                        <t>100</t>
+                        <b>80</b>
+                        <l>80</l>
+                        <r>80</r>
+                      </margin>
+                      <legend>
+                        <font>
+                          <size>18</size>
+                          <family>monospace</family>
+                          <color>rgb(0, 0, 0)</color>
+                        </font>
+                        <borderwidth>0</borderwidth>
+                        <orientation>v</orientation>
+                        <traceorder>normal</traceorder>
+                      </legend>
+                      <bargap>0.19999999999999996</bargap>
+                      <extendpiecolors>true</extendpiecolors>
+                      <piecolorway>#2E91E5</piecolorway>
+                      <piecolorway>#E15F99</piecolorway>
+                      <piecolorway>#1CA71C</piecolorway>
+                      <piecolorway>#FB0D0D</piecolorway>
+                      <piecolorway>#DA16FF</piecolorway>
+                      <piecolorway>#222A2A</piecolorway>
+                      <piecolorway>#B68100</piecolorway>
+                      <piecolorway>#750D86</piecolorway>
+                      <piecolorway>#EB663B</piecolorway>
+                      <piecolorway>#511CFB</piecolorway>
+                      <piecolorway>#00A08B</piecolorway>
+                      <piecolorway>#FB00D1</piecolorway>
+                      <piecolorway>#FC0080</piecolorway>
+                      <piecolorway>#B2828D</piecolorway>
+                      <piecolorway>#6C7C32</piecolorway>
+                      <piecolorway>#778AAE</piecolorway>
+                      <piecolorway>#862A16</piecolorway>
+                      <piecolorway>#A777F1</piecolorway>
+                      <piecolorway>#620042</piecolorway>
+                      <piecolorway>#1616A7</piecolorway>
+                      <piecolorway>#DA60CA</piecolorway>
+                      <piecolorway>#6C4516</piecolorway>
+                      <piecolorway>#0D2A63</piecolorway>
+                      <piecolorway>#AF0038</piecolorway>
+                    </layout>
+                    <data xmlns:json="http://james.newtonking.com/projects/json" json:Array="true">
+                      <type>pie</type>
+                      <mode>markers</mode>
+                      <orientation>h</orientation>
+                      <textposition>None</textposition>
+                      <marker>
+                        <line>
+                          <width>0</width>
+                        </line>
+                      </marker>
+                      <valuessrc>quantity</valuessrc>
+                      <labelssrc>month</labelssrc>
+                      <hoverinfo>percent+label+value</hoverinfo>
+                      <textinfo>label+percent</textinfo>
+                      <hole>0</hole>
+                    </data>
+                  </elementProps>
+                </CHART>
+              </Elements>
+            </Description>
+            <InsightGalleryID>
+            </InsightGalleryID>
+            <InsightGalleryCheckSum />
+          </InsightFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxInsightsPluginEngine.dll" EngineDllEntryPoint="AlteryxInsights" />
+    </Node>
+    <Node ToolID="153">
+      <GuiSettings Plugin="Insights">
+        <Position x="1194" y="714" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <InsightFields>
+            <InsightData>C:\Users\javen\AppData\Local\Temp\Engine_9060_708bbf087c0a8649978180c006c1b40d_\Insight2\insight.sqlite|||insightdata</InsightData>
+            <InsightDescription>C:\Users\javen\AppData\Local\Temp\Engine_9060_708bbf087c0a8649978180c006c1b40d_\Insight2\insightDescription.json</InsightDescription>
+            <Description>
+              <Elements>
+                <CHART>
+                  <x>23</x>
+                  <y>37</y>
+                  <id>insight-0</id>
+                  <width>636</width>
+                  <height>527</height>
+                  <type>CHART</type>
+                  <elementProps>
+                    <layout>
+                      <title>
+                        <text>Sales Performance across the Year ($)</text>
+                      </title>
+                      <font>
+                        <family>sans-serif</family>
+                        <size>12</size>
+                      </font>
+                      <autosize>false</autosize>
+                      <width>636</width>
+                      <height>527</height>
+                      <showlegend>true</showlegend>
+                      <hovermode>closest</hovermode>
+                      <xaxis>
+                        <range>-1.5567050471245381</range>
+                        <range>50.360204647362423</range>
+                        <autorange>false</autorange>
+                        <title>
+                          <text>Week</text>
+                        </title>
+                        <tickfont>
+                          <size>12</size>
+                        </tickfont>
+                        <nticks>0</nticks>
+                        <type>linear</type>
+                      </xaxis>
+                      <yaxis>
+                        <range>-1084.6595607343534</range>
+                        <range>7266.3102720803608</range>
+                        <autorange>false</autorange>
+                        <title>
+                          <text>Total Transaction Amount</text>
+                        </title>
+                        <type>linear</type>
+                      </yaxis>
+                      <barnorm>0</barnorm>
+                      <bargap>0.29000000000000004</bargap>
+                      <margin>
+                        <pad>0</pad>
+                        <t>100</t>
+                        <b>80</b>
+                        <l>80</l>
+                        <r>80</r>
+                      </margin>
+                      <legend>
+                        <font>
+                          <size>12</size>
+                        </font>
+                        <borderwidth>0</borderwidth>
+                        <traceorder>reversed</traceorder>
+                      </legend>
+                    </layout>
+                    <data xmlns:json="http://james.newtonking.com/projects/json" json:Array="true">
+                      <type>scatter</type>
+                      <mode>lines</mode>
+                      <orientation>v</orientation>
+                      <textposition>middle center</textposition>
+                      <marker>
+                        <line>
+                          <width>0</width>
+                        </line>
+                        <color>rgb(31, 180, 33)</color>
+                      </marker>
+                      <hoverinfo>x+y</hoverinfo>
+                      <showlegend>false</showlegend>
+                      <xsrc>week</xsrc>
+                      <stackgroup>1</stackgroup>
+                      <name>Sales Amount</name>
+                      <ysrc>price</ysrc>
+                      <aggregationField>ysrc</aggregationField>
+                      <aggregationFunction>sum</aggregationFunction>
+                      <aggregationFieldName>price</aggregationFieldName>
+                    </data>
+                  </elementProps>
+                </CHART>
+                <CHART>
+                  <x>630</x>
+                  <y>44</y>
+                  <id>insight-1</id>
+                  <width>626</width>
+                  <height>488</height>
+                  <type>CHART</type>
+                  <elementProps>
+                    <layout>
+                      <title>
+                        <text>Sales Performance across the Year</text>
+                      </title>
+                      <font>
+                        <family>sans-serif</family>
+                        <size>12</size>
+                      </font>
+                      <autosize>false</autosize>
+                      <width>626</width>
+                      <height>488</height>
+                      <showlegend>true</showlegend>
+                      <hovermode>closest</hovermode>
+                      <xaxis>
+                        <range>-0.98624249584026558</range>
+                        <range>50.318584038807437</range>
+                        <autorange>false</autorange>
+                        <title>
+                          <text>Week</text>
+                        </title>
+                        <tickfont>
+                          <size>12</size>
+                        </tickfont>
+                        <nticks>0</nticks>
+                        <type>linear</type>
+                      </xaxis>
+                      <yaxis>
+                        <range>-182.62501593523245</range>
+                        <range>1370.0481425650623</range>
+                        <autorange>false</autorange>
+                        <title>
+                          <text>Quantity</text>
+                        </title>
+                        <type>linear</type>
+                      </yaxis>
+                      <margin>
+                        <pad>0</pad>
+                        <t>100</t>
+                        <b>80</b>
+                        <l>80</l>
+                        <r>80</r>
+                      </margin>
+                      <legend>
+                        <font>
+                          <size>12</size>
+                        </font>
+                        <borderwidth>0</borderwidth>
+                        <x>1.0440740740740739</x>
+                        <y>0.74439461883408076</y>
+                      </legend>
+                    </layout>
+                    <data xmlns:json="http://james.newtonking.com/projects/json" json:Array="true">
+                      <type>bar</type>
+                      <mode>lines</mode>
+                      <xsrc>week</xsrc>
+                      <ysrc>quantity</ysrc>
+                      <orientation>v</orientation>
+                      <boxpoints>false</boxpoints>
+                      <stackgroup>1</stackgroup>
+                      <name>&lt;br&gt;</name>
+                      <line>
+                        <width>2</width>
+                      </line>
+                      <hoverinfo>x+y</hoverinfo>
+                      <marker>
+                        <size>6</size>
+                        <line>
+                          <width>0</width>
+                        </line>
+                      </marker>
+                      <visible>true</visible>
+                      <aggregationField>ysrc</aggregationField>
+                      <aggregationFunction>sum</aggregationFunction>
+                      <aggregationFieldName>quantity</aggregationFieldName>
+                    </data>
+                  </elementProps>
+                </CHART>
+              </Elements>
+            </Description>
+            <InsightGalleryID>
+            </InsightGalleryID>
+            <InsightGalleryCheckSum />
+          </InsightFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxInsightsPluginEngine.dll" EngineDllEntryPoint="AlteryxInsights" />
+    </Node>
+    <Node ToolID="154">
+      <GuiSettings Plugin="AlteryxGuiToolkit.TextBox.TextBox">
+        <Position x="1254" y="726" width="144" height="24" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Text>Sales in time-series</Text>
+          <Font name="Arial Narrow" size="9.75" style="1" />
+          <TextColor name="Black" />
+          <FillColor name="White" />
+          <Shape shape="0" />
+          <Justification Justification="4" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+    </Node>
+  </Nodes>
+  <Connections>
+    <Connection>
+      <Origin ToolID="47" Connection="Output" />
+      <Destination ToolID="49" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="49" Connection="Output" />
+      <Destination ToolID="68" Connection="Left" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="67" Connection="Output" />
+      <Destination ToolID="68" Connection="Right" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="51" Connection="Output" />
+      <Destination ToolID="52" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="52" Connection="Output" />
+      <Destination ToolID="65" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="54" Connection="Output" />
+      <Destination ToolID="51" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="56" Connection="Output" />
+      <Destination ToolID="66" Connection="Left" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="68" Connection="Join" />
+      <Destination ToolID="66" Connection="Right" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="65" Connection="Output" />
+      <Destination ToolID="56" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="66" Connection="Join" />
+      <Destination ToolID="70" Connection="Input2" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="69" Connection="True" />
+      <Destination ToolID="74" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="69" Connection="True" />
+      <Destination ToolID="79" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="69" Connection="True" />
+      <Destination ToolID="98" Connection="Left" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="97" Connection="Output" />
+      <Destination ToolID="98" Connection="Right" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="69" Connection="True" />
+      <Destination ToolID="139" Connection="Left" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="138" Connection="Output" />
+      <Destination ToolID="139" Connection="Right" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="70" Connection="Output26" />
+      <Destination ToolID="69" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="70" Connection="Output26" />
+      <Destination ToolID="71" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="70" Connection="Output26" />
+      <Destination ToolID="120" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="71" Connection="Output" />
+      <Destination ToolID="72" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="72" Connection="Output" />
+      <Destination ToolID="73" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="74" Connection="Output" />
+      <Destination ToolID="78" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="76" Connection="Output" />
+      <Destination ToolID="77" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="78" Connection="Output" />
+      <Destination ToolID="144" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="78" Connection="Output" />
+      <Destination ToolID="145" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="79" Connection="Output" />
+      <Destination ToolID="82" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="80" Connection="Output" />
+      <Destination ToolID="81" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="82" Connection="Output" />
+      <Destination ToolID="148" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="82" Connection="Output" />
+      <Destination ToolID="149" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="90" Connection="Output" />
+      <Destination ToolID="97" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="91" Connection="Output" />
+      <Destination ToolID="96" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="92" Connection="Unique" />
+      <Destination ToolID="90" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="93" Connection="Output26" />
+      <Destination ToolID="92" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="94" Connection="False" />
+      <Destination ToolID="93" Connection="Input2" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="95" Connection="Output" />
+      <Destination ToolID="94" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="96" Connection="Output" />
+      <Destination ToolID="95" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="98" Connection="Join" />
+      <Destination ToolID="101" Connection="Left" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="100" Connection="Output" />
+      <Destination ToolID="101" Connection="Right" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="101" Connection="Join" />
+      <Destination ToolID="130" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="101" Connection="Join" />
+      <Destination ToolID="152" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="101" Connection="Join" />
+      <Destination ToolID="153" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="117" Connection="Output" />
+      <Destination ToolID="119" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="118" Connection="Output" />
+      <Destination ToolID="117" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="120" Connection="Output" />
+      <Destination ToolID="118" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="120" Connection="Output" />
+      <Destination ToolID="125" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="125" Connection="Output" />
+      <Destination ToolID="124" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="130" Connection="Output" />
+      <Destination ToolID="127" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="131" Connection="Output" />
+      <Destination ToolID="132" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="133" Connection="Output" />
+      <Destination ToolID="134" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="139" Connection="Join" />
+      <Destination ToolID="140" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="139" Connection="Join" />
+      <Destination ToolID="133" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="140" Connection="Unique" />
+      <Destination ToolID="131" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="144" Connection="Output" />
+      <Destination ToolID="76" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="145" Connection="Output" />
+      <Destination ToolID="146" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="146" Connection="Output" />
+      <Destination ToolID="147" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="148" Connection="Output" />
+      <Destination ToolID="80" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="149" Connection="Output" />
+      <Destination ToolID="150" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="150" Connection="Output" />
+      <Destination ToolID="151" Connection="Input" />
+    </Connection>
+  </Connections>
+  <Properties>
+    <Memory default="True" />
+    <GlobalRecordLimit value="0" />
+    <TempFiles default="True" />
+    <Annotation on="True" includeToolName="False" />
+    <ConvErrorLimit value="10" />
+    <ConvErrorLimit_Stop value="False" />
+    <CancelOnError value="False" />
+    <DisableBrowse value="False" />
+    <EnablePerformanceProfiling value="False" />
+    <RunWithE2 value="True" />
+    <PredictiveToolsCodePage value="1252" />
+    <DisableAllOutput value="False" />
+    <ShowAllMacroMessages value="False" />
+    <ShowConnectionStatusIsOn value="True" />
+    <ShowConnectionStatusOnlyWhenRunning value="True" />
+    <ZoomLevel value="0" />
+    <LayoutType>Horizontal</LayoutType>
+    <MetaInfo>
+      <NameIsFileName value="True" />
+      <Name>2202934B_WORKFLOW</Name>
+      <Description />
+      <RootToolName />
+      <ToolVersion />
+      <ToolInDb value="False" />
+      <CategoryName />
+      <SearchTags />
+      <Author />
+      <Company />
+      <Copyright />
+      <DescriptionLink actual="" displayed="" />
+      <Example>
+        <Description />
+        <File />
+      </Example>
+      <WorkflowId value="52f06d51-a226-431a-b3a0-c8d2d5ed0a91" />
+      <Telemetry>
+        <PreviousWorkflowId value="04dad16c-0c7a-4a4e-a779-252ced9b5b1a" />
+        <OriginWorkflowId value="04dad16c-0c7a-4a4e-a779-252ced9b5b1a" />
+      </Telemetry>
+    </MetaInfo>
+    <Events>
+      <Enabled value="True" />
+    </Events>
+  </Properties>
+</AlteryxDocument>
