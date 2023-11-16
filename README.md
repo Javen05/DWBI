@@ -1,7 +1,12 @@
 # DWBI
 Data Warehouse and Business Intelligence
+
+## Database Schema:
 ![image](https://github.com/Javen05/DWBI/assets/107395637/4cf95a5b-a453-44f6-8695-d0f2f4ff1c9f)
 
+## ETL Workflows:
+![image](https://github.com/Javen05/DWBI/assets/107395637/c9045c71-9131-41a4-bd80-3cdd8b46dca7)
+![image](https://github.com/Javen05/DWBI/assets/107395637/76b00d01-9007-455f-acba-faa7371906c6)
 
 ## Takeaway from Project:
 Through this project, I learnt to design a star schema for storing data in a format that enables intuitive usage and analysis. I also learnt to use stored procedures for updating SCDs in my dimension tables and using an SQL script to import data from CSV files, along with learning a new ETL tool, Alteryx, for data cleaning and transformation. Finally, I understood how to extract insights and generate actionable recommendations from data, and present them effectively to business stakeholders to help them make informed business decisions.
